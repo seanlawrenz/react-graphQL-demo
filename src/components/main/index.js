@@ -3,13 +3,14 @@ import PropType from 'prop-types';
 
 import Payload from'../payload';
 import SSL from '../SSL';
+import WebhookEvent from '../events-for-webhook';
 
+import 'antd/dist/antd.css';
 import './styles.css';
 
 const Main = () => {
   return (
-
-    <div className="container-fluid">
+    <div className="container-fluid main-container">
       <h1>Webhooks example</h1>
       <div className="row">
         <div className="col-md-12">          
@@ -24,6 +25,7 @@ const Main = () => {
       <form>
         <Payload />
         <SSL />
+        <WebhookEvent />
       </form>
     </div>
   );

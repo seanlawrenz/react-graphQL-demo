@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
 
+import { Select } from 'antd';
+
+const Option = Select.Option;
+
 const PayloadURL = () => {
   const contentTypes = [
     {
@@ -14,8 +18,12 @@ const PayloadURL = () => {
   ];
 
   const contentTypesOptions = contentTypes.map((contentType) => {
-    return <option key={contentType.id}>{contentType.name}</option>
+    return <Option key={contentType.id} value={contentType.id}>{contentType.name}</Option>
   })
+
+  const handelChange = (value) => {
+    console.log(`selected ${value}`);
+  }
 
   return(
     <div className="row">
@@ -27,9 +35,9 @@ const PayloadURL = () => {
 
         <div className="form-group">
           <label htmlFor="content-type">Content Type</label>
-          <select className="form-control" name="content-type">
+          <Select defaultValue="" onChange={handelChange}>
             {contentTypesOptions}
-          </select>
+          </Select>
         </div>
 
         <div className="form-group">
