@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Radio } from 'antd';
 
 import IndividualEventOptions from './individual-events';
+import { radioStyle } from '../../theme/variables';
 
 import './styles.css';
 
@@ -34,12 +35,6 @@ class WebHookEvents extends Component {
   }
 
   render() {
-    const radioStyle = {
-      display: 'block',
-      height: '2.5em',
-      lineHeight: '2.5em',
-    };
-
     return (
       <div className="row">
         <div className="col-md-12">

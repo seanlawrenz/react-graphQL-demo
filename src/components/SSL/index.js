@@ -1,22 +1,24 @@
 import React from 'react';
 
+import { Radio } from 'antd';
+
+import { radioStyle } from '../../theme/variables';
+
+const RadioGroup = Radio.Group;
+
 const SslVerification = () => {
+  const onChange = (event) => {
+    console.log(`Value is now ${event.target.value}`);
+  };
+
   return (
     <div className="row">
       <div className="col-md-12">
         <h4>SSL Verification</h4>
-        <div className="radio">
-          <label htmlFor="sslRadios">
-            <input type="radio" name="sslRadios" value="enable" defaultChecked={true} />
-            <strong>Enable SSL Verification</strong>
-          </label>
-        </div>
-        <div className="radio">
-          <label htmlFor="sslRadios">
-            <input type="radio" name="sslRadios" value="disable" />
-            <span className="text-danger">Disable (not recommended)</span>
-          </label>
-        </div>
+        <RadioGroup onChange={onChange}>
+          <Radio style={radioStyle} value="enable">Enable SSL Verification</Radio>
+          <Radio style={radioStyle} className="text-danger" value="disable">Disable (not recommended)</Radio>
+        </RadioGroup>
       </div>
     </div>
   );
