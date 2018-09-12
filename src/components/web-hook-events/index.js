@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Radio } from 'antd';
 
+import IndividualEventOptions from './individual-events';
+
 import './styles.css';
 
 const RadioGroup = Radio.Group;
@@ -27,7 +29,7 @@ class WebHookEvents extends Component {
     this.setState({
       ...this.state,
       value: event.target.value,
-      showHello: event.target.value === STATUS.INDIVIDUAL_EVENTS,
+      showIndividualEventOptions: event.target.value === STATUS.INDIVIDUAL_EVENTS,
     });
   }
 
@@ -48,7 +50,7 @@ class WebHookEvents extends Component {
             <Radio style={radioStyle} value="individual events">Let me select individual events.</Radio>
           </RadioGroup>
           {
-            this.state.showHello ? <h4>Hello</h4> : null
+            this.state.showIndividualEventOptions ? <IndividualEventOptions /> : null
           }
         </div>
       </div>
