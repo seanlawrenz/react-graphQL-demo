@@ -6,5 +6,5 @@ describe('Payload', () => {
   it('should render without errors', () => {
     const div = document.createElement('div');
     ReactDOM.render(<SSL />, div);
-  })
+  });
 });
