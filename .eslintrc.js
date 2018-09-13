@@ -37,6 +37,7 @@ module.exports = {
         "consistent": true
       }
     ],
+    "max-len": 0,
     "linebreak-style": "off",
     "indent": [
       2,

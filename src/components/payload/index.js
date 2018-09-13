@@ -35,7 +35,7 @@ const PayloadURL = () => {
 
         <div className="form-group">
           <label htmlFor="content-type">Content Type</label>
-          <Select size="large" defaultValue="" onChange={handelChange}>
+          <Select style={{ width: '100%' }} size="large" defaultValue="" onChange={handelChange}>
             {contentTypesOptions}
           </Select>
         </div>

@@ -8,7 +8,6 @@ import { radioStyle } from '../../theme/variables';
 import './styles.css';
 
 const RadioGroup = Radio.Group;
-
 const STATUS = {
   INDIVIDUAL_EVENTS: 'individual events',
   PUSH: 'push',
