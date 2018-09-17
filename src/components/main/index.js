@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import 'antd/dist/antd.css';
 
+import { ActiveSkeleton } from '../loading-skeletons';
 import NameAndDescription from '../name-and-description';
 import Payload from '../payload';
 import SSL from '../SSL';
@@ -22,7 +23,9 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    setTimeout(() => {
+      this.fetchData();
+    }, 5000);
   }
 
   fetchData() {
@@ -69,6 +72,16 @@ class Main extends Component {
             <p>We'll send a POST request to the URL below with details of any subscribed events. You can also specify which data format you’d like to receive (JSON, x-www-form-urlencoded, etc). <a href="https://solutions.teamdynamix.com/TDClient/KB/ArticleDet?ID=49694" target="_blank">More information can be found in our developer documentation.</a></p>
           </div>
         </div>
+        {
+          this.state.loading && (
+            <div>
+              <ActiveSkeleton paragraph={false} />
+              <ActiveSkeleton />
+              <ActiveSkeleton />
+              <ActiveSkeleton paragraph={false} />
+            </div>
+          )
+        }
         {
           this.state.loading !== true && (
             <div>
