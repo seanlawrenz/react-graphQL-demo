@@ -1,6 +1,6 @@
 export const ticketData = {
-  name: 'blah',
-  description: 'This is the description of the blah webhook',
+  name: 'Ticket blah',
+  description: 'This is the description of a ticket',
   payloadUrl: 'https://blah.com/tdwebhooks',
   contentType: 'application/json',
   secret: 'my-secret-code',

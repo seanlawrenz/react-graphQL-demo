@@ -1,10 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { configure, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import IndividualEventOptions from '..';
 
+import { ticketData } from '../../../../mock.ticket.data';
+
+configure({ adapter: new Adapter() });
 describe('IndividualEventOptions', () => {
+  let component;
+
   it('should render without errors', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<IndividualEventOptions />, div);
+    component = shallow(<IndividualEventOptions componentEventSelections={ticketData.componentEventSelections} />);
+    expect(component).toBeTruthy();
   });
 });
