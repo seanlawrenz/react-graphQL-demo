@@ -9,9 +9,6 @@ import Payload from '../payload';
 import SSL from '../SSL';
 import WebHookEvents from '../web-hook-events';
 
-import { ticketData } from '../../mock.ticket.data';
-import { assetData } from '../../mock.asset.data';
-
 import './styles.css';
 
 const RadioGroup = Radio.Group;
@@ -35,16 +32,12 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.fetchData();
-    }, 2000);
+    this.fetchData();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.type !== prevState.type) {
-      setTimeout(() => {
-        this.fetchData();
-      }, 2000);
+      this.fetchData();
     }
   }
 
@@ -59,13 +52,24 @@ class Main extends Component {
   }
 
   fetchData() {
-    const data = this.state.type === TYPE.TICKET ? ticketData : assetData;
+    const type = this.state.type === TYPE.TICKET ? 'TDTickets' : 'TDAssets';
 
-    this.setState({
-      ...this.state,
-      webhook: data,
-      loading: false,
-    });
+    const url = `/api/1/1/${type}/1/webhook-config/default`;
+
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json', // eslint-disable-line quote-props
+      },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        this.setState({
+          ...this.state,
+          webhook: data,
+          loading: false,
+        });
+      });
   }
 
   render() {
