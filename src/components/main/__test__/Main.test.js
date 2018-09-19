@@ -1,9 +1,8 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import { ticketData } from 'test-data/mock.ticket.data';
 import Main from '..';
 
-configure({ adapter: new Adapter() });
 describe('Main', () => {
   let component;
   beforeEach(() => {
@@ -17,5 +16,10 @@ describe('Main', () => {
     component.instance().onTypeChange({ target: { value: 'asset' } });
 
     expect(component.instance().state.type).toBe('asset');
+  });
+
+  it('fetches the data', () => {
+    fetch.mockResponse(JSON.stringify(ticketData));
+    expect(fetch).toHaveBeenCalled();
   });
 });

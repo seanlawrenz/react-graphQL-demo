@@ -63,6 +63,7 @@ module.exports = {
       "multiline"
     ],
     "react/no-unescaped-entities": 1,
+    "import/no-extraneous-dependencies": 0,
     "react/jsx-boolean-value": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-no-target-blank": 0,

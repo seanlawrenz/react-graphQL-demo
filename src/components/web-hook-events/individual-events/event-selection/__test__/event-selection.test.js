@@ -1,11 +1,8 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import { assetData } from 'test-data/mock.asset.data';
 import EventSelection from '..';
 
-import { assetData } from '../../../../../mock.asset.data';
-
-configure({ adapter: new Adapter() });
 describe('EventSelection component', () => {
   let component;
 

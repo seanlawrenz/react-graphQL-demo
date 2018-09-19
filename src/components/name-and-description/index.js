@@ -34,7 +34,7 @@ class NameAndDescription extends Component {
 }
 
 NameAndDescription.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   description: PropTypes.string,
 };
 

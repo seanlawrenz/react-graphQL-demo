@@ -1,9 +1,7 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import WebHookEvents from '..';
 
-configure({ adapter: new Adapter() });
 describe('Webhook events', () => {
   let component;
   beforeEach(() => {
