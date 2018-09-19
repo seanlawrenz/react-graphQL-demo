@@ -78,5 +78,12 @@ module.exports = {
       "error",
       "always"
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
   }
 };

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Radio } from 'antd';
+import { radioStyle } from 'theme/variables';
 
 import IndividualEventOptions from './individual-events';
-import { radioStyle } from '../../theme/variables';
 
 import './styles.css';
 
