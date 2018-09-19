@@ -6,6 +6,7 @@ import Main from '..';
 describe('Main', () => {
   let component;
   beforeEach(() => {
+    fetch.mockResponse(JSON.stringify(ticketData));
     component = shallow(<Main />);
   });
   it('renders without crashing', () => {
@@ -19,7 +20,6 @@ describe('Main', () => {
   });
 
   it('fetches the data', () => {
-    fetch.mockResponse(JSON.stringify(ticketData));
     expect(fetch).toHaveBeenCalled();
   });
 });

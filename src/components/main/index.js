@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import 'antd/dist/antd.css';
+import { APIRequest } from 'constants/api';
 
 import { Radio } from 'antd';
 import { ActiveSkeleton } from '../loading-skeletons';
@@ -54,22 +55,13 @@ class Main extends Component {
   fetchData() {
     const type = this.state.type === TYPE.TICKET ? 'TDTickets' : 'TDAssets';
 
-    const url = `/api/1/1/${type}/1/webhook-config/default`;
-
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json', // eslint-disable-line quote-props
-      },
-    })
-      .then(response => response.json())
-      .then((data) => {
-        this.setState({
-          ...this.state,
-          webhook: data,
-          loading: false,
-        });
+    APIRequest(1, type, 1, 'default').then((data) => {
+      this.setState({
+        ...this.state,
+        webhook: data,
+        loading: false,
       });
+    });
   }
 
   render() {
