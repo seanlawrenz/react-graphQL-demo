@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Main from './components/main';
+import { HashRouter } from 'react-router-dom';
+import Main from 'components/main';
 import './App.css';
 
 class App extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <Main />
+      <HashRouter>
+        <Main />
+      </HashRouter>
     );
   }
 }

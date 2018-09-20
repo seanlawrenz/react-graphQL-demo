@@ -1,15 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ticketData } from 'test-data/mock.ticket.data';
+import { listWebhookData } from 'test-data/mock.list.data';
 import Main from '..';
 
 describe('Main', () => {
   let component;
   beforeEach(() => {
-    fetch.mockResponse(JSON.stringify(ticketData));
+    fetch.mockResponse(JSON.stringify(listWebhookData));
     component = shallow(<Main />);
   });
-  it('renders without crashing', () => {
+
+  it('renders without error', () => {
     expect(component).toBeTruthy();
   });
 
