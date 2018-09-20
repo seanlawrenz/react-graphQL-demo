@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 
 import './styles.css';
 
-class MainWebhook extends Component {
+class Webhook extends Component {
   constructor(props) {
     super(props);
 
@@ -20,4 +20,4 @@ class MainWebhook extends Component {
   }
 }
 
-export default MainWebhook;
+export default Webhook;
