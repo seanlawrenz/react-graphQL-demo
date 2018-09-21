@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
 import 'antd/dist/antd.css';
+import WebhookList from 'components/webhook-list';
+
 import { Radio } from 'antd';
 import { APIRequest } from 'constants/api';
 import { ActiveSkeleton } from '../loading-skeletons';
+
+import './styles.css';
 
 const RadioGroup = Radio.Group;
 
@@ -27,7 +31,8 @@ class Main extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    this.fetchData();
+    setTimeout(() => { this.fetchData(); }, 2000);
+    // this.fetchData();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,19 +67,31 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div>
           <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
             <Radio value="ticket">Ticket</Radio>
             <Radio value="asset">Asset</Radio>
           </RadioGroup>
         </div>
+        <div className="row">
+          <nav className="buttonCellTop">
+            <button className="btn btn-link tdx-react-no-text-decoration" type="button">
+              <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
+              <span className="sr-only">Create New</span>
+            </button>
+          </nav>
+          <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
+        </div>
         {
           this.state.loading && (
             <div>
               <ActiveSkeleton paragraph={false} />
-              <ActiveSkeleton />
-              <ActiveSkeleton />
+              <ActiveSkeleton paragraph={false} />
+              <ActiveSkeleton paragraph={false} />
+              <ActiveSkeleton paragraph={false} />
+              <ActiveSkeleton paragraph={false} />
+              <ActiveSkeleton paragraph={false} />
               <ActiveSkeleton paragraph={false} />
             </div>
           )
@@ -86,7 +103,9 @@ class Main extends Component {
         }
         {
           !this.state.loading && this.state.webhookList && (
-            this.state.webhookList.map(webhook => <span key={webhook.uri}><h3>{webhook.name}</h3><br /></span>)
+            <div>
+              <WebhookList webhooks={this.state.webhookList} />
+            </div>
           )
         }
       </div>
