@@ -31,6 +31,8 @@ module.exports = {
       2,
       "always-multiline"
     ],
+    "no-underscore-dangle": 0,
+    "jsx-a11y/anchor-is-valid": 0,
     "object-curly-newline": [
       "error",
       {
