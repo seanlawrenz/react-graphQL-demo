@@ -9,7 +9,7 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
   render() {
     return (
       <HashRouter>
-        <div>
+        <div className="container-fluid">
           <Route exact path="/404" component={ErrorComponent} />
           <Route exact path="/" component={Main} />
           <Route path="/:_uri" component={Webhook} />

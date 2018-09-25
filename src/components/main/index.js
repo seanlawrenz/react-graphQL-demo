@@ -67,7 +67,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div>
         <div>
           <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
             <Radio value="ticket">Ticket</Radio>
