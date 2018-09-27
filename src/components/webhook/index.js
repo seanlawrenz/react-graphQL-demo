@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { APIRequest } from 'constants/api';
+
 import { ActiveSkeleton } from '../loading-skeletons';
 
 import WebhookDetails from './webhook-details';
@@ -51,7 +52,7 @@ class Webhook extends Component {
         <div className="row">
           <div className="col-md-12 gutter-top">
             <h2>Edit Webhook</h2>
-            <p>We will send a POST request to the URL below with details of any subscribed events. You can also specify which data format you’d like to receive (JSON, x-www-form-urlencoded, etc). <a href="https://solutions.teamdynamix.com/TDClient/KB/ArticleDet?ID=49694" target="_blank">More information can be found in our developer documentation.</a></p>
+            <p>We will send a POST request to the URL below with details of any subscribed events. You can also specify which data format you’d like to receive (JSON, x-www-form-urlencoded, etc). <a href="https://solutions.teamdynamix.com/TDClient/KB/ArticleDet?ID=49694" rel="noopener noreferrer" target="_blank">More information can be found in our developer documentation.</a></p>
             {
               this.state.loading && (
                 <div>

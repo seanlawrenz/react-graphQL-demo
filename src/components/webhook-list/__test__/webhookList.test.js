@@ -6,7 +6,7 @@ import WebhookList from '..';
 describe('WebhookList Component', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<WebhookList webhooks={listWebhookData} />);
+    component = shallow(<WebhookList webhooks={listWebhookData} deleteWebhook={() => {}} />);
   });
 
   it('should render without error', () => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import 'antd/dist/antd.css';
 import WebhookList from 'components/webhook-list';
+import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
 
 import { Radio } from 'antd';
 import { APIRequest } from 'constants/api';
@@ -21,6 +22,7 @@ class Main extends Component {
     super(props);
 
     this.onTypeChange = this.onTypeChange.bind(this);
+    this.deleteWebhook = this.deleteWebhook.bind(this);
 
     this.state = {
       loading: true,
@@ -43,6 +45,23 @@ class Main extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
+  }
+
+  async deleteWebhook(webhook) {
+    this.setState({
+      ...this.setState,
+      loading: true,
+    });
+
+    const type = this.state.type === TYPE.TICKET ? 'TDTickets' : 'TDAssets';
+    const webhookId = webhookIdGetter(webhook);
+    const data = await APIRequest(1, type, 1, webhookId, 'DELETE', webhook);
+
+    this.setState({
+      ...this.state,
+      loading: false,
+      webhookList: data,
+    });
   }
 
   onTypeChange(event) {
@@ -104,7 +123,7 @@ class Main extends Component {
         {
           !this.state.loading && this.state.webhookList && (
             <div>
-              <WebhookList webhooks={this.state.webhookList} />
+              <WebhookList webhooks={this.state.webhookList} deleteWebhook={this.deleteWebhook} />
             </div>
           )
         }
