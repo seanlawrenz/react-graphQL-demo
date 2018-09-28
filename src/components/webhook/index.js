@@ -66,7 +66,7 @@ class Webhook extends Component {
             }
             {
               !this.state.loading && this.state.webhook && (
-                <WebhookDetails name={this.state.webhook.name} description={this.state.webhook.description} componentEventSelections={this.state.webhook.componentEventSelections} />
+                <WebhookDetails webhook={this.state.webhook} />
               )
             }
           </div>

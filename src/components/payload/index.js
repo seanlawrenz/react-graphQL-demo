@@ -1,52 +1,27 @@
 import React from 'react';
-// import PropType from 'prop-types';
+import PropType from 'prop-types';
 
-import { Select } from 'antd';
+import { Input } from 'antd';
 
-const { Option } = Select;
-
-const PayloadURL = () => {
-  const contentTypes = [
-    {
-      id: 1,
-      name: 'application/json',
-    },
-    {
-      id: 2,
-      name: 'application/x-www-form-urlencoded',
-    },
-  ];
-
-  const contentTypesOptions = contentTypes.map((contentType) => {
-    return <Option key={contentType.id} value={contentType.id}>{contentType.name}</Option>;
-  });
-
+const PayloadURL = (props) => {
+  const { payloadUrl, secret } = props;
   const handelChange = (value) => {
     console.log(`selected ${value}`);
   };
 
   return (
-    <div className="row">
-      <div className="col-md-12">
-        <div className="form-group">
-          <label htmlFor="payloadURL">Payload URL</label>
-          <input type="text" className="form-control" name="payloadURL" placeholder="http://sean-is-cool.com/postreceive" />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="content-type">Content Type</label>
-          <Select style={{ width: '100%' }} size="large" defaultValue="" onChange={handelChange}>
-            {contentTypesOptions}
-          </Select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="secret">Secret</label>
-          <input type="password" className="form-control" name="secret" />
-        </div>
-      </div>
+    <div className="form-group gutter-top">
+      <label htmlFor="payloadUrl">Payload URL</label>
+      <Input name="payloadUrl" size="large" defaultValue={payloadUrl} onChange={handelChange} />
+      <label htmlFor="secret">Secret</label>
+      <Input name="secret" type="password" defaultValue={secret} onChange={handelChange} />
     </div>
   );
+};
+
+PayloadURL.propTypes = {
+  payloadUrl: PropType.string,
+  secret: PropType.string,
 };
 
 export default PayloadURL;

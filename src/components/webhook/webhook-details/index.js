@@ -9,22 +9,20 @@ import WebHookEvents from 'components/web-hook-events';
 import './styles.css';
 
 const WebhookDetails = (props) => {
-  const { name, description, componentEventSelections } = props;
+  const { webhook: { name, description, payloadUrl, secret, sslVerificationEnabled, allComponentEventsSelected, componentEventSelections } } = props;
 
   return (
-    <div className="gutter-top">
+    <div className="gutter-top gutter-bottom">
       <NameAndDescription name={name} description={description} />
-      <Payload />
-      <SSL />
-      <WebHookEvents componentEventSelections={componentEventSelections} />
+      <Payload payloadUrl={payloadUrl} secret={secret} />
+      <SSL sslVerificationEnabled={sslVerificationEnabled} />
+      <WebHookEvents allComponentEventsSelected={allComponentEventsSelected} componentEventSelections={componentEventSelections} />
     </div>
   );
 };
 
 WebhookDetails.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  componentEventSelections: PropTypes.array.isRequired,
+  webhook: PropTypes.object.isRequired,
 };
 
 export default WebhookDetails;

@@ -11,7 +11,6 @@ import './styles.css';
 const RadioGroup = Radio.Group;
 const STATUS = {
   INDIVIDUAL_EVENTS: 'individual events',
-  PUSH: 'push',
   EVERYTHING: 'everything',
 };
 
@@ -21,27 +20,24 @@ class WebHookEvents extends Component {
 
     this.onChange = this.onChange.bind(this);
 
-    this.state = {
-      value: null,
-    };
+    this.state = {};
   }
 
   onChange(event) {
     this.setState({
       ...this.state,
-      value: event.target.value,
       showIndividualEventOptions: event.target.value === STATUS.INDIVIDUAL_EVENTS,
     });
   }
 
   render() {
-    const { componentEventSelections } = this.props;
+    const { allComponentEventsSelected, componentEventSelections } = this.props;
 
     return (
       <div className="row">
         <div className="col-md-12">
           <h4>Events</h4>
-          <RadioGroup onChange={this.onChange} value={this.state.value}>
+          <RadioGroup onChange={this.onChange} value={allComponentEventsSelected}>
             <Radio style={radioStyle} value="everything">Send me everything</Radio>
             <Radio style={radioStyle} value="individual events">Let me select individual events.</Radio>
           </RadioGroup>
@@ -55,6 +51,7 @@ class WebHookEvents extends Component {
 }
 
 WebHookEvents.propTypes = {
+  allComponentEventsSelected: PropTypes.bool.isRequired,
   componentEventSelections: PropTypes.array,
 };
 
