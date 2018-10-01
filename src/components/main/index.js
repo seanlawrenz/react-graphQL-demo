@@ -6,11 +6,9 @@ import {
   deleteExistingWebhook,
 } from 'actions';
 
-import 'antd/dist/antd.css';
 import WebhookList from 'components/webhook-list';
 
 import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
-
 import { ActiveSkeleton } from '../loading-skeletons';
 
 import './styles.css';

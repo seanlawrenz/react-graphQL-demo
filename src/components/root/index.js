@@ -6,6 +6,8 @@ import Main from 'components/main';
 import ErrorComponent from 'components/error';
 import Webhook from 'components/webhook';
 
+import 'antd/dist/antd.css';
+
 const store = configureStore();
 
 const Root = () => (
