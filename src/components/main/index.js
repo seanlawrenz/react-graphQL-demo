@@ -9,6 +9,8 @@ import {
 import 'antd/dist/antd.css';
 import WebhookList from 'components/webhook-list';
 
+import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
+
 import { ActiveSkeleton } from '../loading-skeletons';
 
 import './styles.css';
@@ -31,7 +33,8 @@ class Main extends Component {
   }
 
   deleteWebhook(webhook) {
-    this.props.dispatch(deleteExistingWebhook(webhook));
+    const uri = webhookIdGetter(webhook);
+    this.props.dispatch(deleteExistingWebhook(webhook, uri));
   }
 
   render() {
