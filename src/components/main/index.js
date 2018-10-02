@@ -5,6 +5,7 @@ import {
   fetchWebhooks,
   deleteExistingWebhook,
 } from 'actions';
+import { Link } from 'react-router-dom';
 
 import WebhookList from 'components/webhook-list';
 
@@ -42,10 +43,10 @@ class Main extends Component {
       <div>
         <div className="row">
           <nav className="buttonCellTop">
-            <button className="btn btn-link tdx-react-no-text-decoration" type="button">
+            <Link to="/new" className="btn btn-link tdx-react-no-text-decoration" type="button">
               <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
               <span className="sr-only">Create New</span>
-            </button>
+            </Link>
           </nav>
           <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
         </div>

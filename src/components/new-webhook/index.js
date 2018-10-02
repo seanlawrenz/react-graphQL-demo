@@ -5,30 +5,21 @@ import { fetchIndividualWebhook } from 'actions';
 import { Link } from 'react-router-dom';
 
 import { ActiveSkeleton } from 'components/loading-skeletons';
+
 import WebhookDetails from 'components/webhook-details';
 
-import './styles.css';
-
-class Webhook extends Component {
+class NewWebhook extends Component {
   constructor(props) {
     super(props);
-
-    this.editWebhook = this.editWebhook.bind(this);
+    this.createWebhook = this.createWebhook.bind(this);
   }
 
   componentDidMount() {
-    this.mounted = true;
     const { dispatch } = this.props;
-    const { match: { params: { _uri } } } = this.props;
-    dispatch(fetchIndividualWebhook(_uri));
+    dispatch(fetchIndividualWebhook('default'));
   }
 
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  editWebhook() {
-    // Placeholder for future work
+  createWebhook() {
     console.log(this.props);
   }
 
@@ -47,7 +38,8 @@ class Webhook extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <h2>Edit Webhook</h2>
+            <h2>New Webhook</h2>
+            <p>We will send a POST request to the URL below with details of any subscribed events. You can also specify which data format you’d like to receive (JSON, x-www-form-urlencoded, etc). <a href="https://solutions.teamdynamix.com/TDClient/KB/ArticleDet?ID=49694" rel="noopener noreferrer" target="_blank">More information can be found in our developer documentation.</a></p>
             {
               isFetching && (
                 <div>
@@ -60,7 +52,7 @@ class Webhook extends Component {
               )
             }
             {
-              !isFetching && webhook.name !== undefined && (
+              !isFetching && webhook.contentType !== undefined && (
                 <WebhookDetails webhook={webhook} />
               )
             }
@@ -71,11 +63,10 @@ class Webhook extends Component {
   }
 }
 
-Webhook.propTypes = {
+NewWebhook.propTypes = {
   webhook: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  match: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
@@ -89,4 +80,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Webhook);
+export default connect(mapStateToProps)(NewWebhook);
