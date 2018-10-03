@@ -3,20 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Checkbox } from 'antd';
 
-// const EventSelection = Form.create({
-//   onFieldsChange(props, changedFields) {
-//     console.log('changedFields', changedFields);
-//     const data = changedFieldsReducer(changedFields);
-//     console.log('data', data);
-//     props.onChange(data);
-//   },
-//   mapPropsToFields(props) {
-//     return {
-//       eventSelection:
-//     }
-//   }
-// })
-
 class EventSelection extends Component {
   constructor(props) {
     super(props);

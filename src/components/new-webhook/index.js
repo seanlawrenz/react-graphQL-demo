@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchIndividualWebhook, updateWebhookField } from 'actions';
+import { fetchIndividualWebhook, updateWebhookField, createNewWebhook } from 'actions';
 import { Link } from 'react-router-dom';
+
+import { Button } from 'antd';
 
 import { ActiveSkeleton } from 'components/loading-skeletons';
 
@@ -21,7 +23,8 @@ class NewWebhook extends Component {
   }
 
   createWebhook() {
-    console.log(this.props);
+    const { dispatch, webhook } = this.props;
+    dispatch(createNewWebhook(webhook));
   }
 
   onWebhookChange(data) { // eslint-disable-line class-methods-use-this
@@ -59,7 +62,11 @@ class NewWebhook extends Component {
             }
             {
               !isFetching && webhook.contentType !== undefined && (
-                <WebhookDetails webhook={webhook} onWebhookChange={this.onWebhookChange} />
+                <span>
+                  <WebhookDetails webhook={webhook} onWebhookChange={this.onWebhookChange} />
+                  <Button onClick={this.createWebhook} className="gutter-right" type="primary" icon="save">Save</Button>
+                  <Link to="/"><Button icon="stop">Cancel</Button></Link>
+                </span>
               )
             }
           </div>
@@ -78,7 +85,7 @@ NewWebhook.propTypes = {
 const mapStateToProps = (state) => {
   const { getSelectedWebhook } = state;
 
-  const { isFetching, item: webhook } = getSelectedWebhook || { isFetching: true, item: {} };
+  const { isFetching, webhook } = getSelectedWebhook || { isFetching: true, webhook: {} };
 
   return {
     isFetching,
