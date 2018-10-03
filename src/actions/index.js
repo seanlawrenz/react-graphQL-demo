@@ -76,7 +76,6 @@ export const fetchWebhooks = () => (
 
 export const fetchIndividualWebhook = uri => (
   async (dispatch) => {
-    console.log('uri', uri);
     dispatch(requestIndividualWebhook(uri));
     const data = await APIRequest(1, 'TDTickets', 1, uri);
     dispatch(receivedIndividualWebhook(data));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchIndividualWebhook, updateWebhookField } from 'actions';
+import { fetchIndividualWebhook, updateWebhookField, editExistingWebhook } from 'actions';
 import { Link } from 'react-router-dom';
 
 import { Button } from 'antd';
@@ -31,8 +31,9 @@ class Webhook extends Component {
   }
 
   editWebhook() {
-    // Placeholder for future work
-    console.log(this.props);
+    const { dispatch, webhook } = this.props;
+    const { match: { params: { _uri } } } = this.props;
+    dispatch(editExistingWebhook(webhook, _uri));
   }
 
   onWebhookChange(data) { // eslint-disable-line class-methods-use-this
@@ -44,7 +45,7 @@ class Webhook extends Component {
     const { webhook, isFetching } = this.props;
 
     return (
-      <div>
+      <div className="gutter-bottom">
         <div className="row">
           <nav className="buttonCellTop">
             <Link to="/" className="btn btn-link tdx-react-no-text-decoration">
@@ -93,7 +94,7 @@ Webhook.propTypes = {
 const mapStateToProps = (state) => {
   const { getSelectedWebhook } = state;
 
-  const { isFetching, item: webhook } = getSelectedWebhook || { isFetching: true, item: {} };
+  const { isFetching, webhook } = getSelectedWebhook || { isFetching: true, webhook: {} };
 
   return {
     isFetching,
