@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchIndividualWebhook } from 'actions';
+import { fetchIndividualWebhook, updateWebhookField } from 'actions';
 import { Link } from 'react-router-dom';
+
+import { Button } from 'antd';
 
 import { ActiveSkeleton } from 'components/loading-skeletons';
 import WebhookDetails from 'components/webhook-details';
@@ -14,6 +16,7 @@ class Webhook extends Component {
     super(props);
 
     this.editWebhook = this.editWebhook.bind(this);
+    this.onWebhookChange = this.onWebhookChange.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +33,11 @@ class Webhook extends Component {
   editWebhook() {
     // Placeholder for future work
     console.log(this.props);
+  }
+
+  onWebhookChange(data) { // eslint-disable-line class-methods-use-this
+    const { dispatch } = this.props;
+    dispatch(updateWebhookField(data));
   }
 
   render() {
@@ -61,7 +69,11 @@ class Webhook extends Component {
             }
             {
               !isFetching && webhook.name !== undefined && (
-                <WebhookDetails webhook={webhook} />
+                <span>
+                  <WebhookDetails webhook={webhook} onWebhookChange={this.onWebhookChange} />
+                  <Button onClick={this.editWebhook} className="gutter-right" type="primary" icon="save">Save</Button>
+                  <Link to="/"><Button icon="stop">Cancel</Button></Link>
+                </span>
               )
             }
           </div>

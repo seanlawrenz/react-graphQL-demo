@@ -7,6 +7,14 @@ export const RECEIVED_INDIVIDUAL_WEBHOOK = 'RECEIVED_INDIVIDUAL_WEBHOOK';
 export const CREATE_WEBHOOK = 'CREATE_WEBHOOK';
 export const EDIT_WEBHOOK = 'EDIT_WEBHOOK';
 export const DELETE_WEBHOOK = 'DELETE_WEBHOOK';
+export const UPDATE_WEBHOOK_FIELD = 'UPDATE_WEBHOOK_FIELD';
+
+export const updateWebhookField = field => (
+  {
+    type: UPDATE_WEBHOOK_FIELD,
+    field,
+  }
+);
 
 const requestWebhooks = () => (
   {
@@ -68,6 +76,7 @@ export const fetchWebhooks = () => (
 
 export const fetchIndividualWebhook = uri => (
   async (dispatch) => {
+    console.log('uri', uri);
     dispatch(requestIndividualWebhook(uri));
     const data = await APIRequest(1, 'TDTickets', 1, uri);
     dispatch(receivedIndividualWebhook(data));

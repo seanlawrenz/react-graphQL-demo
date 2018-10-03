@@ -1,27 +1,55 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-import { Input } from 'antd';
+import { changedFieldsReducer } from 'constants/helpers/changedFieldsReducer';
+import { Form, Input } from 'antd';
 
-const PayloadURL = (props) => {
-  const { payloadUrl, secret } = props;
-  const handelChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+const FormItem = Form.Item;
+
+const PayloadURL = Form.create({
+  onFieldsChange(props, changedFields) {
+    const data = changedFieldsReducer(changedFields);
+    props.onChange(data);
+  },
+  mapPropsToFields(props) {
+    return {
+      payloadUrl: Form.createFormField({
+        field: 'payloadUrl',
+        value: props.payloadUrl,
+      }),
+      secret: Form.createFormField({
+        field: 'secret',
+        value: props.secret,
+      }),
+    };
+  },
+})((props) => {
+  const { getFieldDecorator } = props.form;
 
   return (
-    <div className="form-group gutter-top">
-      <label htmlFor="payloadUrl">Payload URL</label>
-      <Input name="payloadUrl" size="large" defaultValue={payloadUrl} onChange={handelChange} />
-      <label htmlFor="secret">Secret</label>
-      <Input name="secret" type="password" defaultValue={secret} onChange={handelChange} />
-    </div>
+    <Form layout="horizontal">
+      <FormItem label="Payload URL">
+        {
+          getFieldDecorator('payloadUrl', {
+            rules: [{ required: true, message: 'The Payload URL is required' }],
+          })(<Input />)
+        }
+      </FormItem>
+      <FormItem label="Secret">
+        {
+          getFieldDecorator('secret', {
+            rules: [{ required: true, message: 'Your secret password is required' }],
+          })(<Input type="password" />)
+        }
+      </FormItem>
+    </Form>
   );
-};
+});
 
 PayloadURL.propTypes = {
   payloadUrl: PropType.string,
   secret: PropType.string,
+  onChange: PropType.func,
 };
 
 export default PayloadURL;

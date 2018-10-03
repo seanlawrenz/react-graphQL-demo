@@ -7,6 +7,7 @@ import {
   CREATE_WEBHOOK,
   EDIT_WEBHOOK,
   DELETE_WEBHOOK,
+  UPDATE_WEBHOOK_FIELD,
 } from '../actions';
 
 const getAllWebhooks = (
@@ -50,7 +51,11 @@ const getSelectedWebhook = (
       return Object.assign({}, state, {
         isFetching: false,
         item: action.webhook,
+        webhook: action.webhook,
       });
+    case UPDATE_WEBHOOK_FIELD: // eslint-disable-line no-case-declarations
+      const updatedWebhookData = Object.assign({}, state.webhook, action.field);
+      return Object.assign({}, state, { webhook: updatedWebhookData });
     default:
       return state;
   }

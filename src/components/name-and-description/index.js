@@ -1,41 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Input } from 'antd';
+import { changedFieldsReducer } from 'constants/helpers/changedFieldsReducer';
+import { Form, Input } from 'antd';
 
+const FormItem = Form.Item;
 const { TextArea } = Input;
 
-class NameAndDescription extends Component {
-  constructor(props) {
-    super(props);
+const NameAndDescription = Form.create({
+  onFieldsChange(props, changedFields) {
+    const data = changedFieldsReducer(changedFields);
+    props.onChange(data);
+  },
+  mapPropsToFields(props) {
+    return {
+      name: Form.createFormField({
+        field: 'name',
+        value: props.name,
+      }),
+      description: Form.createFormField({
+        field: 'description',
+        value: props.description,
+      }),
+    };
+  },
+})((props) => {
+  const { getFieldDecorator } = props.form;
 
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(event) { // eslint-disable-line class-methods-use-this
-    console.log(event.target.value);
-  }
-
-  render() {
-    const {
-      name,
-      description,
-    } = this.props;
-
-    return (
-      <div className="form-group">
-        <label htmlFor="webhookName">Webhook name</label>
-        <Input name="webhookName" size="large" defaultValue={name} onChange={this.onChange} />
-        <label style={{ marginTop: '0.5em' }} htmlFor="webhookDescription">Description</label>
-        <TextArea rows={4} defaultValue={description} onChange={this.onChange} />
-      </div>
-    );
-  }
-}
+  return (
+    <Form layout="horizontal">
+      <FormItem label="Name">
+        {
+          getFieldDecorator('name', {
+            rules: [{ required: true, message: 'Name is required' }],
+          })(<Input />)
+        }
+      </FormItem>
+      <FormItem label="Description">
+        {
+          getFieldDecorator('description')(<TextArea />)
+        }
+      </FormItem>
+    </Form>
+  );
+});
 
 NameAndDescription.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default NameAndDescription;

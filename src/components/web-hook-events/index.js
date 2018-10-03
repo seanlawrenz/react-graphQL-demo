@@ -1,58 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Radio } from 'antd';
+import { changedFieldsReducer } from 'constants/helpers/changedFieldsReducer';
+import { Form, Radio } from 'antd';
 import { radioStyle } from 'theme/variables';
-
-import IndividualEventOptions from './individual-events';
 
 import './styles.css';
 
+const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
-const STATUS = {
-  INDIVIDUAL_EVENTS: 'individual events',
-  EVERYTHING: 'everything',
-};
 
-class WebHookEvents extends Component {
-  constructor(props) {
-    super(props);
+const WebHookEvents = Form.create({
+  onFieldsChange(props, changedFields) {
+    const data = changedFieldsReducer(changedFields);
+    props.onChange(data);
+  },
+  mapPropsToFields(props) {
+    return {
+      allComponentEventsSelected: Form.createFormField({
+        field: 'allComponentEventsSelected',
+        value: props.allComponentEventsSelected,
+      }),
+    };
+  },
+})((props) => {
+  const { getFieldDecorator } = props.form;
 
-    this.onChange = this.onChange.bind(this);
-
-    this.state = {};
-  }
-
-  onChange(event) {
-    this.setState({
-      ...this.state,
-      showIndividualEventOptions: event.target.value === STATUS.INDIVIDUAL_EVENTS,
-    });
-  }
-
-  render() {
-    const { allComponentEventsSelected, componentEventSelections } = this.props;
-
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <h4>Events</h4>
-          <RadioGroup onChange={this.onChange} value={allComponentEventsSelected}>
-            <Radio style={radioStyle} value="everything">Send me everything</Radio>
-            <Radio style={radioStyle} value="individual events">Let me select individual events.</Radio>
-          </RadioGroup>
-          {
-            this.state.showIndividualEventOptions ? <IndividualEventOptions componentEventSelections={componentEventSelections} /> : null
-          }
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <Form layout="horizontal">
+      <FormItem label="Events">
+        {
+          getFieldDecorator('allComponentEventsSelected')( // eslint-disable-line function-paren-newline
+            <RadioGroup>
+              <Radio style={radioStyle} value={true}>Send me everything</Radio>
+              <Radio style={radioStyle} value={false}>Let me select individual events</Radio>
+            </RadioGroup>
+          ) // eslint-disable-line function-paren-newline
+        }
+      </FormItem>
+    </Form>
+  );
+});
 
 WebHookEvents.propTypes = {
   allComponentEventsSelected: PropTypes.bool.isRequired,
-  componentEventSelections: PropTypes.array,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default WebHookEvents;

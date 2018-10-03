@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchIndividualWebhook } from 'actions';
+import { fetchIndividualWebhook, updateWebhookField } from 'actions';
 import { Link } from 'react-router-dom';
 
 import { ActiveSkeleton } from 'components/loading-skeletons';
@@ -12,6 +12,7 @@ class NewWebhook extends Component {
   constructor(props) {
     super(props);
     this.createWebhook = this.createWebhook.bind(this);
+    this.onWebhookChange = this.onWebhookChange.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +22,11 @@ class NewWebhook extends Component {
 
   createWebhook() {
     console.log(this.props);
+  }
+
+  onWebhookChange(data) { // eslint-disable-line class-methods-use-this
+    const { dispatch } = this.props;
+    dispatch(updateWebhookField(data));
   }
 
   render() {
@@ -53,7 +59,7 @@ class NewWebhook extends Component {
             }
             {
               !isFetching && webhook.contentType !== undefined && (
-                <WebhookDetails webhook={webhook} />
+                <WebhookDetails webhook={webhook} onWebhookChange={this.onWebhookChange} />
               )
             }
           </div>
