@@ -40,10 +40,10 @@ class Main extends Component {
     const { webhooks, isFetching } = this.props;
 
     return (
-      <div>
+      <div className="gutter-bottom">
         <div className="row">
           <nav className="buttonCellTop">
-            <Link to="/new" className="btn btn-link tdx-react-no-text-decoration" type="button">
+            <Link to="/new" className="btn btn-link tdx-react-no-text-decoration">
               <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
               <span className="sr-only">Create New</span>
             </Link>
