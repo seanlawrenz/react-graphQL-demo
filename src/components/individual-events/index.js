@@ -12,7 +12,7 @@ const IndividualEventOptions = (props) => {
 
   const onCheckmarkChecked = (componentEventSelectionID, eventSelection) => {
     const updatedCES = find(componentEventSelections, ces => ces.id === componentEventSelectionID);
-    updatedCES.eventSelections.map((es) => {
+    updatedCES.eventSelections.map((es) => { // eslint-disable-line array-callback-return
       if (es.id === eventSelection.id) {
         es.selected = !eventSelection.selected;
       }

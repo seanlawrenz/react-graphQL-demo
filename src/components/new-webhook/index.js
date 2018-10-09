@@ -24,8 +24,7 @@ class NewWebhook extends Component {
 
   createWebhook() {
     const { dispatch, webhook } = this.props;
-    console.log(webhook);
-    // dispatch(createNewWebhook(webhook));
+    dispatch(createNewWebhook(webhook));
   }
 
   onWebhookChange(data) { // eslint-disable-line class-methods-use-this

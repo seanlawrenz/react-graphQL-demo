@@ -44,7 +44,6 @@ const PayloadURL = Form.create({
               { required: true, message: 'The Payload URL is required' },
               {
                 validator: (rule, value, cb) => {
-                  console.log(props.sslVerificationEnabled);
                   if (value.length > 4) {
                     return cb();
                   }
