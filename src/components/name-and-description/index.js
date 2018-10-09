@@ -32,7 +32,7 @@ const NameAndDescription = Form.create({
       <FormItem label="Name">
         {
           getFieldDecorator('name', {
-            rules: [{ required: true, message: 'Name is required' }],
+            rules: [{ required: true, message: 'The webhook name is required' }],
           })(<Input />)
         }
       </FormItem>
