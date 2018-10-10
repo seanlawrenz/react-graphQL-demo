@@ -26,13 +26,12 @@ const NameAndDescription = Form.create({
   },
 })((props) => {
   const { getFieldDecorator } = props.form;
-
   return (
     <Form layout="horizontal">
       <FormItem label="Name">
         {
           getFieldDecorator('name', {
-            rules: [{ required: true, message: 'The webhook name is required' }],
+            rules: [{ required: true, message: 'A webhook name is required' }],
           })(<Input />)
         }
       </FormItem>

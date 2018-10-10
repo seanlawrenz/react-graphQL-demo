@@ -36,7 +36,6 @@ const getSelectedWebhook = (
   state = {
     isFetching: false,
     webhook: {},
-    showIndividualEventOptions: false,
   },
   action,
 ) => {
@@ -52,11 +51,10 @@ const getSelectedWebhook = (
       return Object.assign({}, state, {
         isFetching: false,
         webhook: action.webhook,
-        updatedWebhookData: action.webhook,
       });
     case UPDATE_WEBHOOK_FIELD: // eslint-disable-line no-case-declarations
       const updatedWebhookData = Object.assign({}, state.webhook, action.field);
-      return Object.assign({}, state, { updatedWebhookData, webhook: updatedWebhookData });
+      return Object.assign({}, state, { webhook: updatedWebhookData });
     default:
       return state;
   }

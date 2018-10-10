@@ -1,4 +1,5 @@
 import { APIRequest } from 'constants/api';
+import fetch from 'cross-fetch';
 
 export const REQUEST_WEBHOOKS = 'REQUEST_WEBHOOKS';
 export const RECEIVED_WEBHOOKS = 'RECIEVED_WEBHOOKS';
@@ -8,6 +9,7 @@ export const CREATE_WEBHOOK = 'CREATE_WEBHOOK';
 export const EDIT_WEBHOOK = 'EDIT_WEBHOOK';
 export const DELETE_WEBHOOK = 'DELETE_WEBHOOK';
 export const UPDATE_WEBHOOK_FIELD = 'UPDATE_WEBHOOK_FIELD';
+export const ERROR_ON_WEBHOOK = 'ERROR_ON_WEBHOOK';
 
 export const updateWebhookField = field => (
   {
@@ -66,6 +68,13 @@ const deleteWebhook = (webhook, uri) => (
   }
 );
 
+const errorOnWebhook = data => (
+  {
+    type: ERROR_ON_WEBHOOK,
+    data,
+  }
+);
+
 export const fetchWebhooks = () => (
   async (dispatch) => {
     dispatch(requestWebhooks());
@@ -85,8 +94,27 @@ export const fetchIndividualWebhook = uri => (
 export const createNewWebhook = webhook => (
   async (dispatch) => {
     dispatch(createWebhook(webhook));
-    const data = await APIRequest(1, 'TDTickets', 1, '', 'POST', webhook);
-    dispatch(receivedIndividualWebhook(data));
+    const url = 'api/1/1/TDTickets/1/webhook-config/';
+    let data;
+    try {
+      const body = await JSON.stringify(webhook);
+      const response = await fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json', // eslint-disable-line quote-props
+        },
+        method: 'POST',
+        body,
+      });
+      data = await response.json();
+      if (response.ok && response.status === 200) {
+        dispatch(receivedIndividualWebhook(data));
+      } else {
+        dispatch(errorOnWebhook(data));
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 );
 
