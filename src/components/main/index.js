@@ -1,109 +1,57 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+  fetchWebhooks,
+  deleteExistingWebhook,
+} from 'actions';
+import { Link } from 'react-router-dom';
 
-import 'antd/dist/antd.css';
 import WebhookList from 'components/webhook-list';
-import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
 
-import { Radio } from 'antd';
-import { APIRequest } from 'constants/api';
+import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
 import { ActiveSkeleton } from '../loading-skeletons';
 
 import './styles.css';
-
-const RadioGroup = Radio.Group;
-
-const TYPE = {
-  TICKET: 'ticket',
-  ASSET: 'asset',
-};
 
 class Main extends Component {
   constructor(props) {
     super(props);
 
-    this.onTypeChange = this.onTypeChange.bind(this);
     this.deleteWebhook = this.deleteWebhook.bind(this);
-
-    this.state = {
-      loading: true,
-      type: TYPE.TICKET, // starting with ticket
-      webhookList: [],
-    };
   }
 
   componentDidMount() {
     this.mounted = true;
-    setTimeout(() => { this.fetchData(); }, 2000);
-    // this.fetchData();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.type !== prevState.type) {
-      this.fetchData();
-    }
+    const { dispatch } = this.props;
+    dispatch(fetchWebhooks());
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
 
-  async deleteWebhook(webhook) {
-    this.setState({
-      ...this.setState,
-      loading: true,
-    });
-
-    const type = this.state.type === TYPE.TICKET ? 'TDTickets' : 'TDAssets';
-    const webhookId = webhookIdGetter(webhook);
-    const data = await APIRequest(1, type, 1, webhookId, 'DELETE', webhook);
-
-    this.setState({
-      ...this.state,
-      loading: false,
-      webhookList: data,
-    });
-  }
-
-  onTypeChange(event) {
-    const type = event.target.value === 'ticket' ? TYPE.TICKET : TYPE.ASSET;
-    this.setState({
-      ...this.state,
-      loading: true,
-      type,
-    });
-  }
-
-  async fetchData() {
-    const type = this.state.type === TYPE.TICKET ? 'TDTickets' : 'TDAssets';
-    const data = await APIRequest(1, type, 1, '');
-    if (this.mounted) {
-      this.setState({
-        loading: false,
-        webhookList: data,
-      });
-    }
+  deleteWebhook(webhook) {
+    const uri = webhookIdGetter(webhook);
+    this.props.dispatch(deleteExistingWebhook(webhook, uri));
   }
 
   render() {
+    const { webhooks, isFetching } = this.props;
+
     return (
-      <div>
-        <div>
-          <RadioGroup onChange={this.onTypeChange} value={this.state.type}>
-            <Radio value="ticket">Ticket</Radio>
-            <Radio value="asset">Asset</Radio>
-          </RadioGroup>
-        </div>
+      <div className="gutter-bottom">
         <div className="row">
           <nav className="buttonCellTop">
-            <button className="btn btn-link tdx-react-no-text-decoration" type="button">
+            <Link to="/new" className="btn btn-link tdx-react-no-text-decoration">
               <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
               <span className="sr-only">Create New</span>
-            </button>
+            </Link>
           </nav>
           <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
         </div>
         {
-          this.state.loading && (
+          isFetching && (
             <div>
               <ActiveSkeleton paragraph={false} />
               <ActiveSkeleton paragraph={false} />
@@ -116,14 +64,14 @@ class Main extends Component {
           )
         }
         {
-          !this.state.loading && !this.state.webhookList && (
+          !isFetching && !webhooks && (
             <h2>Could not load any webhooks</h2>
           )
         }
         {
-          !this.state.loading && this.state.webhookList && (
+          !isFetching && webhooks && (
             <div>
-              <WebhookList webhooks={this.state.webhookList} deleteWebhook={this.deleteWebhook} />
+              <WebhookList webhooks={webhooks} deleteWebhook={this.deleteWebhook} />
             </div>
           )
         }
@@ -132,4 +80,21 @@ class Main extends Component {
   }
 }
 
-export default Main;
+Main.propTypes = {
+  webhooks: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { getAllWebhooks } = state;
+
+  const { isFetching, items: webhooks } = getAllWebhooks || { isFetching: true, items: [] };
+
+  return {
+    isFetching,
+    webhooks,
+  };
+};
+
+export default connect(mapStateToProps)(Main);

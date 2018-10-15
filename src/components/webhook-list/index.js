@@ -32,7 +32,7 @@ const WebhookList = (props) => {
                   return (
                     <tr key={webhookId}>
                       <td>
-                        <Link to={`/${webhookId}`} className="btn btn-link">
+                        <Link to={`/webhook/${webhookId}`} className="btn btn-link">
                           <span className="sr-only">Edit {webhook.name}</span>{webhook.name}
                         </Link>
                       </td>

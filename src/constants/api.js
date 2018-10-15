@@ -1,3 +1,5 @@
+import fetch from 'cross-fetch';
+
 export const APIRequest = async (businessEntitiyId, type, applicationId, param, requestMethod, body) => {
   const url = `api/1/${businessEntitiyId}/${type}/${applicationId}/webhook-config/${param}`;
   let data;

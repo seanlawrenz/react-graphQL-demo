@@ -22,6 +22,8 @@ class EventSelection extends Component {
         selected: event.target.checked,
       },
     });
+
+    this.props.onCheckmarkChecked(this.props.id, this.state.eventSelection);
   }
 
   render() {
@@ -33,6 +35,8 @@ class EventSelection extends Component {
 
 EventSelection.propTypes = {
   eventSelection: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  onCheckmarkChecked: PropTypes.func.isRequired,
 };
 
 export default EventSelection;
