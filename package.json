@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap": "3.3.7",
     "cross-fetch": "^2.2.2",
+    "graphql": "^14.0.2",
     "immutable": "3.7.4",
     "lodash": "^4.17.11",
     "node-sass-chokidar": "^1.3.3",
@@ -14,13 +15,12 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
+    "react-relay": "^1.6.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "react-scripts": "2.0.4"
   },
   "scripts": {
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
@@ -36,16 +36,22 @@
     "*.js": "eslint --ignore-path .gitignore"
   },
   "devDependencies": {
+    "babel-plugin-relay": "1.7.0-rc.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "4.19.1",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "jest-fetch-mock": "^1.6.6",
     "react-test-renderer": "^16.5.0",
-    "redux-logger": "^3.0.6"
+    "relay-compiler": "^1.6.2"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

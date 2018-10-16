@@ -23,6 +23,8 @@ module.exports = {
       1,
       "as-needed"
     ],
+    "arrow-parens": 0,
+    "react/jsx-one-expression-per-line": 0,
     "indent": [
       "error",
       4
