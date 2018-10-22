@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { listWebhookData } from 'test-data/mock.list.data';
-import WebhookList from '../WebhookList';
+import WebhookListDetails from '../WebhookListDetails';
 
-describe('WebhookList Component', () => {
+describe('WebhookListDetails Component', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<WebhookList webhooks={listWebhookData} deleteWebhook={() => {}} />);
+    component = shallow(<WebhookListDetails webhook={listWebhookData} />);
   });
 
   it('should render without error', () => {

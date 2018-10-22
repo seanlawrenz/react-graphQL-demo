@@ -20,12 +20,6 @@ const MainQuery = graphql`
 `;
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-
-    this.deleteWebhook = this.deleteWebhook.bind(this);
-  }
-
   componentDidMount() {
     this.mounted = true;
   }
@@ -34,20 +28,13 @@ class Main extends Component {
     this.mounted = false;
   }
 
-  deleteWebhook(webhook) {
-    // const uri = webhookIdGetter(webhook);
-    // this.props.dispatch(deleteExistingWebhook(webhook, uri));
-    console.log(this.props, webhook);
-  }
-
   render() {
     return (
       <div className="gutter-bottom">
         <div className="row">
           <nav className="buttonCellTop">
             <Link to="/new" className="btn btn-link tdx-react-no-text-decoration">
-              <span className="fa fa-plus fa-nopad" aria-hidden="true"></span>
-              New
+              <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
               <span className="sr-only">Create New</span>
             </Link>
           </nav>
