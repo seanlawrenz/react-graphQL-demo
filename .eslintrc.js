@@ -4,6 +4,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     jest: true,
+    'cypress/globals': true,
   },
   extends: ['airbnb', 'eslint-config-prettier'],
   parserOptions: {
@@ -13,7 +14,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'eslint-plugin-cypress'],
   rules: {
     'arrow-body-style': [1, 'as-needed'],
     'arrow-parens': 0,

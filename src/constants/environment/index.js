@@ -5,7 +5,7 @@ const { Environment, Network, RecordSource, Store } = require('relay-runtime');
 const store = new Store(new RecordSource());
 
 const network = Network.create((operation, variables) => {
-  return fetch('https://api.graph.cool/relay/v1/cjnagdaur1w8h0176mrm3fjxz', {
+  return fetch('graphql', {
     method: 'POST',
     headers: {
       Accept: 'application/json', // eslint-disable-line quote-props
