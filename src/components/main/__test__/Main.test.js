@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+// import { render } from 'react-testing-library';
 import Main from '../Main';
 
 describe('Main', () => {
@@ -11,5 +12,8 @@ describe('Main', () => {
   it('renders without error', () => {
     expect(component).toBeTruthy();
   });
-});
 
+  test('rendering', () => {
+    expect(component).toMatchSnapshot();
+  });
+});
