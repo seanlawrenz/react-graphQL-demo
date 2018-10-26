@@ -17,29 +17,28 @@ export type WebhookListDetails_webhook = {|
 |};
 */
 
-
-const node/*: ConcreteFragment*/ = {
-  "kind": "Fragment",
-  "name": "WebhookListDetails_webhook",
-  "type": "WebhookConfig",
-  "metadata": null,
-  "argumentDefinitions": [],
-  "selections": [
+const node /*: ConcreteFragment*/ = {
+  kind: 'Fragment',
+  name: 'WebhookListDetails_webhook',
+  type: 'WebhookConfig',
+  metadata: null,
+  argumentDefinitions: [],
+  selections: [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "id",
-      "args": null,
-      "storageKey": null
+      kind: 'ScalarField',
+      alias: null,
+      name: 'id',
+      args: null,
+      storageKey: null,
     },
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "name",
-      "args": null,
-      "storageKey": null
-    }
-  ]
+      kind: 'ScalarField',
+      alias: null,
+      name: 'name',
+      args: null,
+      storageKey: null,
+    },
+  ],
 };
 // prettier-ignore
 (node/*: any*/).hash = 'f1e36be0cd743294e00714046b2c17ff';

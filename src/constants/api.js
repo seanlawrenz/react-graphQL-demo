@@ -7,13 +7,13 @@ export const APIRequest = async (businessEntitiyId, type, applicationId, param, 
     const method = requestMethod === undefined ? 'GET' : requestMethod;
 
     if (body !== undefined) {
-      body = await JSON.stringify(body);// eslint-disable-line no-param-reassign
+      body = await JSON.stringify(body); // eslint-disable-line no-param-reassign
     }
 
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json', // eslint-disable-line quote-props
+        Accept: 'application/json', // eslint-disable-line quote-props
       },
       method,
       body,

@@ -28,7 +28,13 @@ class EventSelection extends Component {
 
   render() {
     return (
-      <Checkbox value={this.state.eventSelection.selected} key={this.state.eventSelection.id} onChange={this.onChange} checked={this.state.eventSelection.selected} >{this.state.eventSelection.label}</Checkbox>
+      <Checkbox
+        value={this.state.eventSelection.selected}
+        key={this.state.eventSelection.id}
+        onChange={this.onChange}
+        checked={this.state.eventSelection.selected}>
+        {this.state.eventSelection.label}
+      </Checkbox>
     );
   }
 }

@@ -34,7 +34,7 @@ class Main extends Component {
         <div className="row">
           <nav className="buttonCellTop">
             <Link to="/new" className="btn btn-link tdx-react-no-text-decoration">
-              <span className="fa fa-plus fa-nopad" aria-hidden="true"></span> New
+              <span className="fa fa-plus fa-nopad" aria-hidden="true" /> New
               <span className="sr-only">Create New</span>
             </Link>
           </nav>

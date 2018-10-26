@@ -6,22 +6,28 @@ export const ticketData = {
   secret: 'my-secret-code',
   sslVerificationEnabled: false,
   selectAll: false,
-  componentEventSelections: [{
-    id: 9,
-    label: 'Ticket',
-    eventSelections: [{
-      id: 1,
-      label: 'Created',
-      selected: true,
-    }, {
-      id: 2,
-      label: 'Changed',
-      selected: true,
-    }, {
-      id: 3,
-      label: 'Deleted',
-      selected: true,
-    }],
-  }],
+  componentEventSelections: [
+    {
+      id: 9,
+      label: 'Ticket',
+      eventSelections: [
+        {
+          id: 1,
+          label: 'Created',
+          selected: true,
+        },
+        {
+          id: 2,
+          label: 'Changed',
+          selected: true,
+        },
+        {
+          id: 3,
+          label: 'Deleted',
+          selected: true,
+        },
+      ],
+    },
+  ],
   isActive: true,
 };

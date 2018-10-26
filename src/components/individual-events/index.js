@@ -7,12 +7,13 @@ import EventSelection from './event-selection';
 
 import './styles.css';
 
-const IndividualEventOptions = (props) => {
+const IndividualEventOptions = props => {
   const { componentEventSelections, onWebhookChange } = props;
 
   const onCheckmarkChecked = (componentEventSelectionID, eventSelection) => {
     const updatedCES = find(componentEventSelections, ces => ces.id === componentEventSelectionID);
-    updatedCES.eventSelections.map((es) => { // eslint-disable-line array-callback-return
+    updatedCES.eventSelections.map(es => {
+      // eslint-disable-line array-callback-return
       if (es.id === eventSelection.id) {
         es.selected = !eventSelection.selected;
       }
@@ -26,18 +27,23 @@ const IndividualEventOptions = (props) => {
 
   return (
     <div>
-      {
-        componentEventSelections.map((componentEventSelection) => {
-          return (
-            <span key={componentEventSelection.id}>
-              <h4 key={componentEventSelection.id} className="checkbox-group">{componentEventSelection.label}</h4>
-              {
-                componentEventSelection.eventSelections.map(eventSelection => <EventSelection key={eventSelection.id} id={componentEventSelection.id} eventSelection={eventSelection} onCheckmarkChecked={onCheckmarkChecked} />)
-              }
-            </span>
-          );
-        })
-      }
+      {componentEventSelections.map(componentEventSelection => {
+        return (
+          <span key={componentEventSelection.id}>
+            <h4 key={componentEventSelection.id} className="checkbox-group">
+              {componentEventSelection.label}
+            </h4>
+            {componentEventSelection.eventSelections.map(eventSelection => (
+              <EventSelection
+                key={eventSelection.id}
+                id={componentEventSelection.id}
+                eventSelection={eventSelection}
+                onCheckmarkChecked={onCheckmarkChecked}
+              />
+            ))}
+          </span>
+        );
+      })}
     </div>
   );
 };

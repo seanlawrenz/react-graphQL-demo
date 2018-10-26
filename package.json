@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap": "3.3.7",
     "cross-fetch": "^2.2.2",
+    "eslint-config-prettier": "^3.1.0",
     "graphql": "^14.0.2",
     "immutable": "3.7.4",
     "lodash": "^4.17.11",
@@ -30,13 +31,15 @@
     "test": "react-scripts test --env=jsdom",
     "lint": "npm run lint:eslint -- .",
     "lint:eslint": "eslint --ignore-path .gitignore",
-    "lint:staged": "lint-stage"
+    "lint:staged": "lint-stage",
+    "prettier": "prettier --write \"**/*.+(js|jsx|yml|yaml|less|scss|ts|tsx|md|mdx|graphql|vue)\""
   },
   "lint-staged": {
     "*.js": "eslint --ignore-path .gitignore"
   },
   "devDependencies": {
     "babel-plugin-relay": "1.7.0-rc.1",
+    "cypress": "^3.1.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -44,7 +47,9 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "jest-fetch-mock": "^1.6.6",
+    "prettier": "^1.14.3",
     "react-test-renderer": "^16.5.0",
+    "react-testing-library": "^5.2.3",
     "relay-compiler": "^1.6.2"
   },
   "proxy": "http://localhost:4000",

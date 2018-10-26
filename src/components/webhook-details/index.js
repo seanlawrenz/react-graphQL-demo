@@ -8,8 +8,10 @@ import IndividualEvents from 'components/individual-events';
 
 import './styles.css';
 
-const WebhookDetails = (props) => {
-  const { webhook: { name, description, payloadUrl, secret, sslVerificationEnabled, allComponentEventsSelected, componentEventSelections } } = props;
+const WebhookDetails = props => {
+  const {
+    webhook: { name, description, payloadUrl, secret, sslVerificationEnabled, allComponentEventsSelected, componentEventSelections },
+  } = props;
   const onWebhookChange = data => props.onWebhookChange(data);
 
   return (
@@ -17,11 +19,9 @@ const WebhookDetails = (props) => {
       <NameAndDescription name={name} description={description} onChange={onWebhookChange} />
       <Payload payloadUrl={payloadUrl} secret={secret} sslVerificationEnabled={sslVerificationEnabled} onChange={onWebhookChange} />
       <WebHookEvents allComponentEventsSelected={allComponentEventsSelected} onChange={onWebhookChange} />
-      {
-        !allComponentEventsSelected && (
-          <IndividualEvents componentEventSelections={componentEventSelections} onWebhookChange={onWebhookChange} />
-        )
-      }
+      {!allComponentEventsSelected && (
+        <IndividualEvents componentEventSelections={componentEventSelections} onWebhookChange={onWebhookChange} />
+      )}
     </div>
   );
 };

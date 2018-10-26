@@ -6,39 +6,48 @@ export const assetData = {
   secret: 'my-secret-code',
   sslVerificationEnabled: false,
   selectAll: false,
-  componentEventSelections: [{
-    id: 27,
-    label: 'Asset',
-    eventSelections: [{
-      id: 1,
-      label: 'Created',
-      selected: false,
+  componentEventSelections: [
+    {
+      id: 27,
+      label: 'Asset',
+      eventSelections: [
+        {
+          id: 1,
+          label: 'Created',
+          selected: false,
+        },
+        {
+          id: 2,
+          label: 'Changed',
+          selected: true,
+        },
+        {
+          id: 3,
+          label: 'Deleted',
+          selected: false,
+        },
+      ],
     },
     {
-      id: 2,
-      label: 'Changed',
-      selected: true,
+      id: 63,
+      label: 'Configuration Item',
+      eventSelections: [
+        {
+          id: 1,
+          label: 'Created',
+          selected: false,
+        },
+        {
+          id: 2,
+          label: 'Changed',
+          selected: true,
+        },
+        {
+          id: 4,
+          label: 'Deleted',
+          selected: false,
+        },
+      ],
     },
-    {
-      id: 3,
-      label: 'Deleted',
-      selected: false,
-    }],
-  }, {
-    id: 63,
-    label: 'Configuration Item',
-    eventSelections: [{
-      id: 1,
-      label: 'Created',
-      selected: false,
-    }, {
-      id: 2,
-      label: 'Changed',
-      selected: true,
-    }, {
-      id: 4,
-      label: 'Deleted',
-      selected: false,
-    }],
-  }],
+  ],
 };
