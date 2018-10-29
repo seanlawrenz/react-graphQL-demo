@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { createFragmentContainer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+// import { createFragmentContainer } from 'react-relay';
+// import graphql from 'babel-plugin-relay/macro';
 
 const WebhookListDetails = props => {
   const deleteWebhook = id => {
@@ -10,18 +10,18 @@ const WebhookListDetails = props => {
   };
 
   const {
-    webhook: { id, name },
+    webhook: { id, Name },
   } = props;
   return (
     <tr>
       <td>
         <Link to={`/webhook/${id}`} className="btn btn-link">
-          <span className="sr-only">Edit {name}</span>
-          {name}
+          <span className="sr-only">Edit {Name}</span>
+          {Name}
         </Link>
       </td>
-      <td>Thurs 4/20/18 11:38 AM</td>
-      <td>Fri 4/21/18 2:45 PM</td>
+      <td>Creatfdklsjf;s</td>
+      <td>hello sam</td>
       <td>
         <button
           type="button"
@@ -40,12 +40,14 @@ WebhookListDetails.propTypes = {
   webhook: PropTypes.object.isRequired,
 };
 
-export default createFragmentContainer(
-  WebhookListDetails,
-  graphql`
-    fragment WebhookListDetails_webhook on WebhookConfig {
-      id
-      name
-    }
-  `,
-);
+// export default createFragmentContainer(
+//   WebhookListDetails,
+//   graphql`
+//     fragment WebhookListDetails_webhook on Webhook {
+//       id
+//       Name
+//     }
+//   `,
+// );
+
+export default WebhookListDetails;

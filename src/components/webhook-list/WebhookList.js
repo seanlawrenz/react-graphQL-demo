@@ -7,6 +7,7 @@ import WebhookListDetails from './webhook-list-details/WebhookListDetails';
 import './styles.css';
 
 const WebhookList = props => {
+  console.log('props', props);
   return (
     <div className="row">
       <div className="col-md-12">
@@ -21,9 +22,9 @@ const WebhookList = props => {
               </tr>
             </thead>
             <tbody>
-              {props.viewer.allWebhookConfigs.edges.map(({ node }) => {
-                // eslint-disable-line
-                return <WebhookListDetails key={node.__id} webhook={node} />;
+              
+              {props.webhooks.map(({ node }) => {// eslint-disable-line
+                return <WebhookListDetails key={node.id} webhook={node} />;
               })}
             </tbody>
           </table>
@@ -33,17 +34,14 @@ const WebhookList = props => {
   );
 };
 
-export default createFragmentContainer(
-  WebhookList,
-  graphql`
-    fragment WebhookList_viewer on Viewer {
-      allWebhookConfigs(first: 25, orderBy: name_ASC) @connection(key: "WebhookList_allWebhookConfigs", filters: []) {
-        edges {
-          node {
-            ...WebhookListDetails_webhook
-          }
-        }
-      }
-    }
-  `,
-);
+
+// export default createFragmentContainer(
+//   WebhookList,
+//   graphql`
+//   fragment WebhookList_webhooks on Query {
+    
+//   }
+// `
+// );
+
+export default WebhookList;

@@ -13,8 +13,13 @@ import './styles.css';
 
 const MainQuery = graphql`
   query MainQuery {
-    viewer {
-      ...WebhookList_viewer
+    Webhooks {
+      edges {
+        node {
+          Name
+          CreatedDate     
+        }
+      }
     }
   }
 `;
@@ -47,7 +52,7 @@ class Main extends Component {
             if (error) {
               return <div>{error.message}</div>;
             } else if (props) { // eslint-disable-line
-              return <WebhookList viewer={props.viewer} />;
+              return  <WebhookList webhooks={props.Webhooks.edges} />;
             }
             return <WebhookLoadingSkeleton />;
           }}
