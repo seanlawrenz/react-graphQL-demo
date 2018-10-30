@@ -1,13 +1,11 @@
 import React from 'react';
-import { createFragmentContainer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
-
+import PropTypes from 'prop-types';
 import WebhookListDetails from './webhook-list-details/WebhookListDetails';
 
 import './styles.css';
 
 const WebhookList = props => {
-  console.log('props', props);
+  const { webhooks } = props;
   return (
     <div className="row">
       <div className="col-md-12">
@@ -22,10 +20,11 @@ const WebhookList = props => {
               </tr>
             </thead>
             <tbody>
-              
-              {props.webhooks.map(({ node }) => {// eslint-disable-line
-                return <WebhookListDetails key={node.id} webhook={node} />;
-              })}
+              {
+                webhooks.map(({ node: webhook}) => (
+                  <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
+                ))
+              }
             </tbody>
           </table>
         </div>
@@ -34,14 +33,8 @@ const WebhookList = props => {
   );
 };
 
-
-// export default createFragmentContainer(
-//   WebhookList,
-//   graphql`
-//   fragment WebhookList_webhooks on Query {
-    
-//   }
-// `
-// );
+WebhookList.propTypes = {
+  webhooks: PropTypes.array,
+};
 
 export default WebhookList;

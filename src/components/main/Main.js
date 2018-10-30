@@ -13,11 +13,10 @@ import './styles.css';
 
 const MainQuery = graphql`
   query MainQuery {
-    Webhooks {
+    Webhooks(first: 10) {
       edges {
         node {
-          Name
-          CreatedDate     
+          ...WebhookListDetails_webhookDetails
         }
       }
     }
