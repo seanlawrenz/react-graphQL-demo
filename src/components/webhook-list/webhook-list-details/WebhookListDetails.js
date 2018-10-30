@@ -4,14 +4,20 @@ import { Link } from 'react-router-dom';
 import { createFragmentContainer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
+import { convertToCommonDateTime } from 'constants/dates/date-time';
+
 const WebhookListDetails = props => {
   const deleteWebhook = id => {
     console.log(id);
   };
 
   const {
-    webhookDetails: { id, Name },
+    webhookDetails: { id, Name, CreatedDate, ModifiedDate, CreatedByUserUser, ModifiedByUserUser},
   } = props;
+
+  const commonCreatedDate = convertToCommonDateTime(CreatedDate);
+  const commonModifiedDate = convertToCommonDateTime(ModifiedDate);
+
   return (
     <tr>
       <td>
@@ -20,14 +26,24 @@ const WebhookListDetails = props => {
           {Name}
         </Link>
       </td>
-      <td>Creatfdklsjf;s</td>
-      <td>hello sam</td>
+      <td>
+        <span className="btn">{commonCreatedDate}</span>
+      </td>
+      <td>
+        <span className="btn">{CreatedByUserUser.FullName}</span>
+      </td>
+      <td>
+        <span className="btn">{commonModifiedDate}</span>
+      </td>
+      <td>
+        <span className="btn">{ModifiedByUserUser.FullName}</span>
+      </td>
       <td>
         <button
           type="button"
           className="btn btn-link"
           onClick={() => {
-            deleteWebhook('id');
+            deleteWebhook(id);
           }}
         >
           <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
@@ -48,6 +64,12 @@ export default createFragmentContainer(WebhookListDetails, {
       Name
       CreatedDate
       ModifiedDate
+      CreatedByUserUser {
+        FullName
+      }
+      ModifiedByUserUser {
+        FullName
+      }
     }
   `,
 });

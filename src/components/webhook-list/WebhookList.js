@@ -15,7 +15,9 @@ const WebhookList = props => {
               <tr className="TDGridHeader">
                 <th>Webhook name</th>
                 <th>Date Created</th>
+                <th>Created By</th>
                 <th>Last Modified</th>
+                <th>Modified By</th>
                 <th>Delete Webhook</th>
               </tr>
             </thead>
