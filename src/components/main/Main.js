@@ -5,7 +5,7 @@ import graphql from 'babel-plugin-relay/macro';
 
 import environment from 'constants/environment';
 import WebhookList from 'components/webhook-list/WebhookList';
-import WebhookLoadingSkeleton from 'components/loading-skeletons/webhooks-loading';
+import WebhooksLoadingSkeleton from 'components/loading-skeletons/webhooks-loading';
 
 // import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
 
@@ -50,10 +50,11 @@ class Main extends Component {
           render={({ error, props }) => {
             if (error) {
               return <div>{error.message}</div>;
-            } else if (props) { // eslint-disable-line
-              return  <WebhookList webhooks={props.Webhooks.edges} />;
             }
-            return <WebhookLoadingSkeleton />;
+            if (props) {
+              return <WebhookList webhooks={props.Webhooks.edges} />;
+            }
+            return <WebhooksLoadingSkeleton />;
           }}
         />
       </div>

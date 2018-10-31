@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Webhook from '..';
+import Webhook from '../Webhook';
 
 describe('Webhook Component', () => {
   let component;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActiveSkeleton } from 'components/loading-skeletons';
 
-const WebhookLoadingSkeleton = () => (
+const WebhooksLoadingSkeleton = () => (
   <div>
     <ActiveSkeleton paragraph={false} />
     <ActiveSkeleton paragraph={false} />
@@ -13,4 +13,4 @@ const WebhookLoadingSkeleton = () => (
   </div>
 );
 
-export default WebhookLoadingSkeleton;
+export default WebhooksLoadingSkeleton;

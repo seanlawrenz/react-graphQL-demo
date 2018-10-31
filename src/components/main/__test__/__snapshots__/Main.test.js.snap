@@ -58,6 +58,7 @@ ShallowWrapper {
               "_deferrableSelections": Set {},
               "_network": Object {
                 "execute": [Function],
+                "executeWithEvents": [Function],
               },
               "_publishQueue": RelayPublishQueue {
                 "_appliedOptimisticUpdates": Set {},
@@ -253,6 +254,7 @@ ShallowWrapper {
             "_deferrableSelections": Set {},
             "_network": Object {
               "execute": [Function],
+              "executeWithEvents": [Function],
             },
             "_publishQueue": RelayPublishQueue {
               "_appliedOptimisticUpdates": Set {},
@@ -352,6 +354,7 @@ ShallowWrapper {
                 "_deferrableSelections": Set {},
                 "_network": Object {
                   "execute": [Function],
+                  "executeWithEvents": [Function],
                 },
                 "_publishQueue": RelayPublishQueue {
                   "_appliedOptimisticUpdates": Set {},
@@ -547,6 +550,7 @@ ShallowWrapper {
               "_deferrableSelections": Set {},
               "_network": Object {
                 "execute": [Function],
+                "executeWithEvents": [Function],
               },
               "_publishQueue": RelayPublishQueue {
                 "_appliedOptimisticUpdates": Set {},
