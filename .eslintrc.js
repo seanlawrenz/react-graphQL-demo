@@ -6,7 +6,7 @@ module.exports = {
     jest: true,
     'cypress/globals': true,
   },
-  extends: ['airbnb', 'eslint-config-prettier'],
+  extends: ['airbnb'],
   parserOptions: {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
