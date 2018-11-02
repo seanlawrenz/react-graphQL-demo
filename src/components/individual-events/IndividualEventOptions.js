@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createFragmentContainer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
 
 import find from 'lodash/find';
 
@@ -17,6 +19,7 @@ const IndividualEventOptions = props => {
       if (es.id === eventSelection.id) {
         es.selected = !eventSelection.selected;
       }
+      return undefined;
     });
     const data = {
       componentEventSelections,
@@ -53,4 +56,15 @@ IndividualEventOptions.propTypes = {
   onWebhookChange: PropTypes.func.isRequired,
 };
 
-export default IndividualEventOptions;
+// export default IndividualEventOptions;
+
+export default createFragmentContainer(IndividualEventOptions, {
+  componentEventSelections: graphql`
+    fragment IndividualEventOptions_componentEventSelections on WebhookComponentEventEdge {
+      node {
+        EventType
+        IsSelected
+      }
+    }
+  `,
+});

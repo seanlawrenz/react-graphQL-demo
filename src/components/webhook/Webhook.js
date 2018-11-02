@@ -16,7 +16,7 @@ import './styles.css';
 const WebhookQuery = graphql`
   query WebhookQuery($Id: ID!) {
     node(id: $Id) {
-      idu
+      id
       ...WebhookDetails_webhook
     }
   }
@@ -27,6 +27,7 @@ class Webhook extends Component {
     super(props);
 
     this.editWebhook = this.editWebhook.bind(this);
+    this.onWebhookChange = this.onWebhookChange.bind(this);
     const { match: { params: { _uri } } } = this.props;
     this.uri = _uri;
   }
@@ -40,6 +41,10 @@ class Webhook extends Component {
   }
 
   editWebhook() {
+    console.log(this.props);
+  }
+
+  onWebhookChange() {
     console.log(this.props);
   }
 
@@ -68,7 +73,7 @@ class Webhook extends Component {
                   return <div>{error.message}</div>;
                 }
                 if (props) {
-                  return <WebhookDetails webhook={props.node} />;
+                  return <WebhookDetails webhook={props.node} onWebhookChange={this.onWebhookChange} />;
                 }
                 return <WebhookLoadingSkeleton />;
               }}

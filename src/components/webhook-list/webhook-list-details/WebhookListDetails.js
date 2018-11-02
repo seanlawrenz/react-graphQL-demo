@@ -12,7 +12,7 @@ const WebhookListDetails = props => {
   };
 
   const {
-    webhookDetails: { id, Name, CreatedDate, ModifiedDate, CreatedByUserUser, ModifiedByUserUser},
+    webhookDetails: { id, Name, CreatedDate, ModifiedDate, CreatedByUserUser, ModifiedByUserUser },
   } = props;
 
   const commonCreatedDate = convertToCommonDateTime(CreatedDate);
