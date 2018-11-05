@@ -23,7 +23,7 @@ const WebhookList = props => {
             </thead>
             <tbody>
               {
-                webhooks.map(({ node: webhook}) => (
+                webhooks.map(({ node: webhook }) => (
                   <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
                 ))
               }
