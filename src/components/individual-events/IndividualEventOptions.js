@@ -1,69 +1,56 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createFragmentContainer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
-// import find from 'lodash/find';
-
-// import EventSelection from './event-selection';
+import { Checkbox } from 'antd';
 
 import './styles.css';
 
-const IndividualEventOptions = props => {
-  console.log(props);
-  // const { componentEventSelections, onWebhookChange } = props;
+class IndividualEventOptions extends Component {
+  constructor(props) {
+    super(props);
 
-  // const onCheckmarkChecked = (componentEventSelectionID, eventSelection) => {
-  //   const updatedCES = find(componentEventSelections, ces => ces.id === componentEventSelectionID);
-  //   updatedCES.eventSelections.map(es => {
-  //     // eslint-disable-line array-callback-return
-  //     if (es.id === eventSelection.id) {
-  //       es.selected = !eventSelection.selected;
-  //     }
-  //     return undefined;
-  //   });
-  //   const data = {
-  //     componentEventSelections,
-  //   };
+    this.onChange = this.onChange.bind(this);
+    const { webhookComponentEvent } = this.props;
+    this.state = {
+      webhookComponentEvent,
+    };
+  }
 
-  //   onWebhookChange(data);
-  // };
+  onChange(event) {
+    this.setState({
+      ...this.state, // eslint-disable-line
+      webhookComponentEvent: {
+        ...this.state.webhookComponentEvent, // eslint-disable-line
+        IsSelected: event.target.checked,
+      },
+    });
+  }
 
-  return (
-    <div>
-      {/* {componentEventSelections.map(componentEventSelection => {
-        return (
-          <span key={componentEventSelection.id}>
-            <h4 key={componentEventSelection.id} className="checkbox-group">
-              {componentEventSelection.label}
-            </h4>
-            {componentEventSelection.eventSelections.map(eventSelection => (
-              <EventSelection
-                key={eventSelection.id}
-                id={componentEventSelection.id}
-                eventSelection={eventSelection}
-                onCheckmarkChecked={onCheckmarkChecked}
-              />
-            ))}
-          </span>
-        );
-      })} */}
-    </div>
-  );
+  render() {
+    const { webhookComponentEvent: { IsSelected, EventType } } = this.state;
+    return (
+      <Checkbox
+        value={IsSelected}
+        onChange={this.onChange}
+        checked={IsSelected}
+      >
+        {EventType}
+      </Checkbox>
+    );
+  }
+}
+
+IndividualEventOptions.propTypes = {
+  webhookComponentEvent: PropTypes.object.isRequired,
 };
 
-// IndividualEventOptions.propTypes = {
-//   componentEventSelections: PropTypes.array,
-//   onWebhookChange: PropTypes.func.isRequired,
-// };
-
-// export default IndividualEventOptions;
-
 export default createFragmentContainer(IndividualEventOptions, {
-  componentEventSelections: graphql`
-    fragment IndividualEventOptions_componentEventSelections on WebhookComponentEvent @relay(plural: true){
+  webhookComponentEvent: graphql`
+    fragment IndividualEventOptions_webhookComponentEvent on WebhookComponentEvent {
+      IsSelected
       EventType
-      IsSelected      
     }
   `,
 });

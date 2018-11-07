@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFragmentContainer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
+import IndividualEventOptions from 'components/individual-events/IndividualEventOptions';
 
 const WebhookComponentsDetails = props => {
-  const { webhookComponents } = props;
-  console.log('Webhook component details', webhookComponents);
+  const { webhookComponent: { Component: { Name }, webhookComponentEvents } } = props;
+
   return (
     <div>
+      <p>{Name}</p>
       {
-        webhookComponents.map(webhookComponent => (
-          <p key={webhookComponent.node.id}>{webhookComponent.node.Component.Name}</p>
+        webhookComponentEvents.edges.map(({ webhookComponentEvent }) => (
+          <div key={webhookComponentEvent.id}>
+            <IndividualEventOptions webhookComponentEvent={webhookComponentEvent} />
+          </div>
         ))
       }
     </div>
@@ -18,28 +22,25 @@ const WebhookComponentsDetails = props => {
 };
 
 WebhookComponentsDetails.propTypes = {
-  webhookComponents: PropTypes.array.isRequired,
+  webhookComponent: PropTypes.object.isRequired,
 };
 
 // export default WebhookComponentsDetails;
 
 export default createFragmentContainer(WebhookComponentsDetails, {
-  webhookComponents: graphql`
-    fragment WebhookComponentDetails_webhookComponents on WebhookComponent @relay(plural: true) {
-      id
+  webhookComponent: graphql`
+    fragment WebhookComponentDetails_webhookComponent on WebhookComponent {
       Component {
-        id
         Name
+      }
+      webhookComponentEvents: WebhookComponentOnWebhookComponentEvents {
+        edges {
+          webhookComponentEvent: node {
+            id
+            ...IndividualEventOptions_webhookComponentEvent
+          }
+        }
       }
     }
   `,
 });
-
-
-// # WebhookComponentOnWebhookComponentEvents {
-//   #   edges {
-//   #     node {
-//   #       ...IndividualEventOptions_componentEventSelections
-//   #     }
-//   #   }
-//   # }
