@@ -6,7 +6,7 @@ import graphql from 'babel-plugin-relay/macro';
 
 import { convertToCommonDateTime } from 'constants/dates/date-time';
 
-const WebhookListDetails = props => {
+export const WebhookListDetails = props => {
   const deleteWebhook = id => {
     console.log(id);
   };

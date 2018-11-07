@@ -19,7 +19,7 @@
     "relay-compiler": "^1.7.0-rc.1"
   },
   "scripts": {
-    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
+    "relay": "relay-compiler --src ./src --schema ./config/schema.graphql",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",

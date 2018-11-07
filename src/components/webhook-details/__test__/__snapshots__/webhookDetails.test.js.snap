@@ -1,0 +1,1023 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="gutter-top gutter-bottom"
+>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="name"
+          onClick={[Function]}
+          title="Name"
+        >
+          Name
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "name",
+                  "name": "name",
+                  "value": "Test",
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "name",
+                  "originalProps": Object {
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "A webhook name is required",
+                      "required": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "A webhook name is required",
+                          "required": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="name"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value="Test"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="description"
+          onClick={[Function]}
+          title="Description"
+        >
+          Description
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <textarea
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "description",
+                  "name": "description",
+                  "value": undefined,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "description",
+                  "originalProps": Object {
+                    "prefixCls": "ant-input",
+                  },
+                  "ref": null,
+                  "trigger": "onChange",
+                  "validate": Array [],
+                  "valuePropName": "value",
+                }
+              }
+              id="description"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              style={Object {}}
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="payloadUrl"
+          onClick={[Function]}
+          title="Payload URL"
+        >
+          Payload URL
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              autoComplete="new-password"
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "payloadUrl",
+                  "name": "payloadUrl",
+                  "value": undefined,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "payloadUrl",
+                  "originalProps": Object {
+                    "autoComplete": "new-password",
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "The Payload URL is required",
+                      "required": true,
+                    },
+                    Object {
+                      "message": "The url must be https if you want SSL Verification",
+                      "validator": [Function],
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "The Payload URL is required",
+                          "required": true,
+                        },
+                        Object {
+                          "message": "The url must be https if you want SSL Verification",
+                          "validator": [Function],
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="payloadUrl"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="secret"
+          onClick={[Function]}
+          title="Secret"
+        >
+          Secret
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              autoComplete="new-password"
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "secret",
+                  "name": "secret",
+                  "value": null,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "secret",
+                  "originalProps": Object {
+                    "autoComplete": "new-password",
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "password",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "Your secret password is required",
+                      "required": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "Your secret password is required",
+                          "required": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="secret"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="password"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="sslVerificationEnabled"
+          onClick={[Function]}
+          title="SSL Verification"
+        >
+          SSL Verification
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="ant-radio-group ant-radio-group-outline"
+              id="sslVerificationEnabled"
+            >
+              <label
+                className="ant-radio-wrapper"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio"
+                  style={Object {}}
+                >
+                  <input
+                    checked={false}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={true}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Enable SSL Verification
+                </span>
+              </label>
+              <label
+                className="text-danger ant-radio-wrapper ant-radio-wrapper-checked"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio ant-radio-checked"
+                  style={Object {}}
+                >
+                  <input
+                    checked={true}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={false}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Disable (not recommended)
+                </span>
+              </label>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="allComponentEventsSelected"
+          onClick={[Function]}
+          title="Events"
+        >
+          Events
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="ant-radio-group ant-radio-group-outline"
+              id="allComponentEventsSelected"
+            >
+              <label
+                className="ant-radio-wrapper ant-radio-wrapper-checked"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio ant-radio-checked"
+                  style={Object {}}
+                >
+                  <input
+                    checked={true}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={true}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Send me everything
+                </span>
+              </label>
+              <label
+                className="ant-radio-wrapper"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio"
+                  style={Object {}}
+                >
+                  <input
+                    checked={false}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={false}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Let me select individual events
+                </span>
+              </label>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`updates the view to show components if select components is selected 1`] = `
+<div
+  className="gutter-top gutter-bottom"
+>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="name"
+          onClick={[Function]}
+          title="Name"
+        >
+          Name
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "name",
+                  "name": "name",
+                  "value": "Test",
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "name",
+                  "originalProps": Object {
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "A webhook name is required",
+                      "required": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "A webhook name is required",
+                          "required": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="name"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value="Test"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="description"
+          onClick={[Function]}
+          title="Description"
+        >
+          Description
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <textarea
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "description",
+                  "name": "description",
+                  "value": undefined,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "description",
+                  "originalProps": Object {
+                    "prefixCls": "ant-input",
+                  },
+                  "ref": null,
+                  "trigger": "onChange",
+                  "validate": Array [],
+                  "valuePropName": "value",
+                }
+              }
+              id="description"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              style={Object {}}
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="payloadUrl"
+          onClick={[Function]}
+          title="Payload URL"
+        >
+          Payload URL
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              autoComplete="new-password"
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "payloadUrl",
+                  "name": "payloadUrl",
+                  "value": undefined,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "payloadUrl",
+                  "originalProps": Object {
+                    "autoComplete": "new-password",
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "The Payload URL is required",
+                      "required": true,
+                    },
+                    Object {
+                      "message": "The url must be https if you want SSL Verification",
+                      "validator": [Function],
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "The Payload URL is required",
+                          "required": true,
+                        },
+                        Object {
+                          "message": "The url must be https if you want SSL Verification",
+                          "validator": [Function],
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="payloadUrl"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="secret"
+          onClick={[Function]}
+          title="Secret"
+        >
+          Secret
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              autoComplete="new-password"
+              className="ant-input"
+              data-__field={
+                Object {
+                  "field": "secret",
+                  "name": "secret",
+                  "value": null,
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "secret",
+                  "originalProps": Object {
+                    "autoComplete": "new-password",
+                    "disabled": false,
+                    "prefixCls": "ant-input",
+                    "type": "password",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "Your secret password is required",
+                      "required": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "Your secret password is required",
+                          "required": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="secret"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="password"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="sslVerificationEnabled"
+          onClick={[Function]}
+          title="SSL Verification"
+        >
+          SSL Verification
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="ant-radio-group ant-radio-group-outline"
+              id="sslVerificationEnabled"
+            >
+              <label
+                className="ant-radio-wrapper"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio"
+                  style={Object {}}
+                >
+                  <input
+                    checked={false}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={true}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Enable SSL Verification
+                </span>
+              </label>
+              <label
+                className="text-danger ant-radio-wrapper ant-radio-wrapper-checked"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio ant-radio-checked"
+                  style={Object {}}
+                >
+                  <input
+                    checked={true}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={false}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Disable (not recommended)
+                </span>
+              </label>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor="allComponentEventsSelected"
+          onClick={[Function]}
+          title="Events"
+        >
+          Events
+        </label>
+      </div>
+      <div
+        className="ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control has-success"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="ant-radio-group ant-radio-group-outline"
+              id="allComponentEventsSelected"
+            >
+              <label
+                className="ant-radio-wrapper ant-radio-wrapper-checked"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio ant-radio-checked"
+                  style={Object {}}
+                >
+                  <input
+                    checked={true}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={true}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Send me everything
+                </span>
+              </label>
+              <label
+                className="ant-radio-wrapper"
+                style={
+                  Object {
+                    "display": "block",
+                    "height": "2.5em",
+                    "lineHeight": "2.5em",
+                  }
+                }
+              >
+                <span
+                  className="ant-radio"
+                  style={Object {}}
+                >
+                  <input
+                    checked={false}
+                    className="ant-radio-input"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value={false}
+                  />
+                  <span
+                    className="ant-radio-inner"
+                  />
+                </span>
+                <span>
+                  Let me select individual events
+                </span>
+              </label>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;

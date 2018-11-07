@@ -10,7 +10,7 @@ import WebhookComponentDetails from 'components/webhook-components/WebhookCompon
 
 import './styles.css';
 
-class WebhookDetails extends Component {
+export class WebhookDetails extends Component {
   constructor(props) {
     super(props);
 

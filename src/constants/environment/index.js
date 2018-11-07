@@ -1,11 +1,12 @@
 import fetch from 'cross-fetch';
+import { GRAPHQL_API_URL } from 'config/graphqlAPI';
 
 const { Environment, Network, RecordSource, Store } = require('relay-runtime');
 
 const store = new Store(new RecordSource());
 
 const network = Network.create((operation, variables) => {
-  return fetch('graphql', {
+  return fetch(GRAPHQL_API_URL, {
     method: 'POST',
     headers: {
       Accept: 'application/json', // eslint-disable-line quote-props

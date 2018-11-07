@@ -1,19 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import { render } from 'react-testing-library';
+import { BrowserRouter } from 'react-router-dom';
+import { render } from 'react-testing-library';
 import Main from '../Main';
 
 describe('Main', () => {
-  let component;
-  beforeEach(() => {
-    component = shallow(<Main />);
-  });
+  it('should render the webhooks', () => {
+    const main = render(<BrowserRouter><Main /></BrowserRouter>);
 
-  it('renders without error', () => {
-    expect(component).toBeTruthy();
-  });
-
-  test('rendering', () => {
-    expect(component).toMatchSnapshot();
+    main.getByText('Webhooks example');
+    expect(main.queryByText).toBeTruthy();
   });
 });
