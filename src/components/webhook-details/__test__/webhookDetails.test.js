@@ -1,18 +1,40 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { ticketData } from 'test-data/mock.ticket.data';
+import { render } from 'react-testing-library';
+import { build, fake } from 'test-data-bot';
 import { WebhookDetails } from '../WebhookDetails';
 
-
-test('renders correctly', () => {
-  const tree = renderer.create(<WebhookDetails webhook={ticketData} onWebhookChange={() => {}} />).toJSON();
-
-  expect(tree).toMatchSnapshot();
+const webhookBuilder = build('Webhook').fields({
+  Name: fake(f => f.lorem.word()),
+  Description: fake(f => f.lorem.words()),
+  PayloadUrl: fake(f => f.internet.url()),
+  Secret: fake(f => f.internet.password()),
+  SslVerificationEnabled: fake(f => f.random.boolean()),
+  AllComponentEventsSelected: fake(f => f.random.boolean()),
 });
 
-test('updates the view to show components if select components is selected', () => {
-  const ticketWithIndividualEvents = Object.assign({}, ticketData, { AllComponentEventsSelected: false });
-  const tree = renderer.create(<WebhookDetails webhook={ticketWithIndividualEvents} onWebhookChange={() => {}} />).toJSON();
+const webhookComponents = {
+  edges: [{
+    webhookComponent: {
+      id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
+      __id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
+      Component: {
+        Name: 'test',
+      },
+      webhookComponentEvents: {
+        edges: [{
+          webhookComponentEvent: {
+            id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
+          },
+        }],
+      },
+    },
+  }],
+};
 
-  expect(tree).toMatchSnapshot();
+test('renders correctly', () => {
+  const webhookComponentData = webhookBuilder();
+  webhookComponentData.webhookComponents = webhookComponents;
+  webhookComponentData.AllComponentEventsSelected = false;
+  const { container } = render(<WebhookDetails webhook={webhookComponentData} onWebhookChange={() => {}} />);
+  expect(container).toBeTruthy();
 });

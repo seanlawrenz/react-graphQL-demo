@@ -21,10 +21,17 @@ export const WebhookListDetails = props => {
   return (
     <tr>
       <td>
-        <Link to={`/webhook/${id}`} className="btn btn-link">
-          <span className="sr-only">Edit {Name}</span>
-          {Name}
-        </Link>
+        <button
+          type="button"
+          data-testid="new webhook"
+          aria-label="create new webhook"
+          className="btn btn-link"
+        >
+          <Link to={`/webhook/${id}`}>
+            <span className="sr-only">Edit {Name}</span>
+            {Name}
+          </Link>
+        </button>
       </td>
       <td>
         <span className="btn">{commonCreatedDate}</span>
@@ -41,7 +48,9 @@ export const WebhookListDetails = props => {
       <td>
         <button
           type="button"
+          aria-label="delete webhook"
           className="btn btn-link"
+          data-testid="delete button"
           onClick={() => {
             deleteWebhook(id);
           }}

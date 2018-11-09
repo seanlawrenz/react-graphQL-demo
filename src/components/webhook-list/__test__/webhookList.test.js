@@ -1,15 +1,31 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { listWebhookData } from 'test-data/mock.list.data';
+import { renderWithRouter } from 'constants/helpers/renderWithRouter';
+import { build, fake, sequence, arrayOf } from 'test-data-bot';
 import WebhookList from '../WebhookList';
 
-describe('WebhookList Component', () => {
-  let component;
-  beforeEach(() => {
-    component = shallow(<WebhookList webhooks={listWebhookData} deleteWebhook={() => {}} />);
-  });
+jest.mock('react-relay');
 
-  it('should render without error', () => {
-    expect(component).toBeTruthy();
-  });
+const webhookBuilder = build('Webhook').fields({
+  node: {
+    __id: sequence(s => `idll${s}`),
+    id: fake(f => f.lorem.word()),
+    Name: fake(f => f.lorem.words()),
+    CreatedDate: fake(f => f.date.past()),
+    ModifiedDate: fake(f => f.date.recent()),
+    CreatedByUserUser: {
+      FullName: fake(f => f.name.findName()),
+    },
+    ModifiedByUserUser: {
+      FullName: fake(f => f.name.findName()),
+    },
+  },
+});
+
+const webhooksBuilder = build('Webhooks').fields({
+  webhooks: arrayOf(webhookBuilder(), 1),
+});
+
+test('WebhookList', () => {
+  const webhooks = webhooksBuilder();
+  renderWithRouter(<WebhookList webhooks={webhooks.webhooks} />);
 });

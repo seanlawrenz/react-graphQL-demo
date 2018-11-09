@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { GRAPHQL_API_URL } from 'config/graphqlAPI';
 
-const { Environment, Network, RecordSource, Store } = require('relay-runtime');
+import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 const store = new Store(new RecordSource());
 

@@ -1,14 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { renderWithRouter } from 'constants/helpers/renderWithRouter';
 import Webhook from '../Webhook';
 
-describe('Webhook Component', () => {
-  let component;
-  beforeEach(() => {
-    component = shallow(<Webhook />);
-  });
+const mockParams = {
+  params: {
+    _uri: 'fjkslfsjl',
+  },
+};
 
-  it('renders without error', () => {
-    expect(component).toBeTruthy();
-  });
+test('Webhook', () => {
+  const { container } = renderWithRouter(<Webhook match={mockParams} />);
+
+  expect(container).toBeTruthy();
 });
