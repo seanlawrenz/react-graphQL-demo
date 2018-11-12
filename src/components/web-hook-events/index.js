@@ -23,19 +23,23 @@ const WebHookEvents = Form.create({
       }),
     };
   },
-})((props) => {
+})(props => {
   const { getFieldDecorator } = props.form;
 
   return (
     <Form layout="horizontal">
       <FormItem label="Events">
-        {
-          getFieldDecorator('allComponentEventsSelected')( // eslint-disable-line function-paren-newline
-            <RadioGroup>
-              <Radio style={radioStyle} value={true}>Send me everything</Radio>
-              <Radio style={radioStyle} value={false}>Let me select individual events</Radio>
-            </RadioGroup>
-          ) // eslint-disable-line function-paren-newline
+        {getFieldDecorator('allComponentEventsSelected')(
+          // eslint-disable-line function-paren-newline
+          <RadioGroup>
+            <Radio style={radioStyle} value={true}>
+              Send me everything
+            </Radio>
+            <Radio style={radioStyle} value={false}>
+              Let me select individual events
+            </Radio>
+          </RadioGroup>,
+        ) // eslint-disable-line function-paren-newline
         }
       </FormItem>
     </Form>

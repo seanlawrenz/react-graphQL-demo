@@ -1,27 +1,39 @@
 export const ticketData = {
-  name: 'Ticket blah',
-  description: 'This is the description of a ticket',
-  payloadUrl: 'https://blah.com/tdwebhooks',
-  contentType: 'application/json',
-  secret: 'my-secret-code',
-  sslVerificationEnabled: false,
-  selectAll: false,
-  componentEventSelections: [{
-    id: 9,
-    label: 'Ticket',
-    eventSelections: [{
-      id: 1,
-      label: 'Created',
-      selected: true,
-    }, {
-      id: 2,
-      label: 'Changed',
-      selected: true,
-    }, {
-      id: 3,
-      label: 'Deleted',
-      selected: true,
-    }],
-  }],
-  isActive: true,
+  id: 'V2ViaG9vazp7IklkIjoxfQ==',
+  Name: 'Test',
+  SslVerificationEnabled: false,
+  AllComponentEventsSelected: true,
+  Secret: null,
+  webhookComponents: {
+    edges: [
+      {
+        id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
+        Component: {
+          Name: 'Ticket',
+        },
+        webhookComponent: {
+          edges: [
+            {
+              node: {
+                EventType: 'Created',
+                IsSelected: true,
+              },
+            },
+            {
+              node: {
+                EventType: 'Updated',
+                IsSelected: true,
+              },
+            },
+            {
+              node: {
+                EventType: 'Deleted',
+                IsSelected: true,
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
 };

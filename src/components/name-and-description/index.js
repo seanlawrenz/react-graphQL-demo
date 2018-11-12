@@ -24,22 +24,16 @@ const NameAndDescription = Form.create({
       }),
     };
   },
-})((props) => {
+})(props => {
   const { getFieldDecorator } = props.form;
   return (
     <Form layout="horizontal">
       <FormItem label="Name">
-        {
-          getFieldDecorator('name', {
-            rules: [{ required: true, message: 'A webhook name is required' }],
-          })(<Input />)
-        }
+        {getFieldDecorator('name', {
+          rules: [{ required: true, message: 'A webhook name is required' }],
+        })(<Input />)}
       </FormItem>
-      <FormItem label="Description">
-        {
-          getFieldDecorator('description')(<TextArea />)
-        }
-      </FormItem>
+      <FormItem label="Description">{getFieldDecorator('description')(<TextArea />)}</FormItem>
     </Form>
   );
 });

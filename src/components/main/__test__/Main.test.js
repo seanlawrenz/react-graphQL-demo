@@ -1,26 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { listWebhookData } from 'test-data/mock.list.data';
-import Main from '..';
+import { BrowserRouter } from 'react-router-dom';
+import { render } from 'react-testing-library';
+import Main from '../Main';
 
 describe('Main', () => {
-  let component;
-  beforeEach(() => {
-    fetch.mockResponse(JSON.stringify(listWebhookData));
-    component = shallow(<Main />);
-  });
+  it('should render the webhooks', () => {
+    const main = render(<BrowserRouter><Main /></BrowserRouter>);
 
-  it('renders without error', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('changes the type on radio click (this is for demo only)', () => {
-    component.instance().onTypeChange({ target: { value: 'asset' } });
-
-    expect(component.instance().state.type).toBe('asset');
-  });
-
-  it('fetches the data', () => {
-    expect(fetch).toHaveBeenCalled();
+    main.getByText('Webhooks example');
+    expect(main.queryByText).toBeTruthy();
   });
 });
