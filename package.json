@@ -37,7 +37,7 @@
     "react-dom": "^16.4.2",
     "react-relay": "^1.7.0-rc.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.4",
+    "react-scripts": "2.1.1",
     "relay-compiler": "^1.7.0-rc.1"
   },
   "devDependencies": {
