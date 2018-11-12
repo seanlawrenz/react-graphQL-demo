@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-import environment from 'constants/environment';
 import WebhookList from 'components/webhook-list';
 import WebhooksLoadingSkeleton from 'components/loading-skeletons/webhooks-loading';
 
-// import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
-
 import './styles.css';
 
-const MainQuery = graphql`
+import { WEBHOOK_LIST_DETAILS_FRAGMENT } from 'components/webhook-list/webhook-list-details/WebhookListDetails';
+
+const MainQuery = gql`
   query MainQuery {
     Webhooks(first: 10) {
       edges {
@@ -21,7 +20,21 @@ const MainQuery = graphql`
       }
     }
   }
+  ${WEBHOOK_LIST_DETAILS_FRAGMENT}
 `;
+
+// const MainQuery = gql`
+//   query MainQuery {
+//     Webhooks(first: 10) {
+//       edges {
+//         node {
+//           id
+//           Name
+//         }
+//       }
+//     }
+//   }
+// `;
 
 class Main extends Component {
   componentDidMount() {
@@ -44,19 +57,17 @@ class Main extends Component {
           </nav>
           <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
         </div>
-        <QueryRenderer
-          environment={environment}
+        <Query
           query={MainQuery}
-          render={({ error, props }) => {
-            if (error) {
-              return <div>{error.message}</div>;
+        >
+          {
+            ({ loading, error, data }) => {
+              if (loading) return <WebhooksLoadingSkeleton />;
+              if (error) return <p>Error</p>;
+              return <WebhookList webhooks={data.Webhooks} />;
             }
-            if (props) {
-              return <WebhookList webhooks={props.Webhooks.edges} />;
-            }
-            return <WebhooksLoadingSkeleton />;
-          }}
-        />
+          }
+        </Query>
       </div>
     );
   }

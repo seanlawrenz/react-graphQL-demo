@@ -1,10 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { createFragmentContainer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import gql from 'graphql-tag';
 
 import { convertToCommonDateTime } from 'constants/dates/date-time';
+
+
+export const WEBHOOK_LIST_DETAILS_FRAGMENT = gql`
+  fragment WebhookListDetails_webhookDetails on Webhook {
+    id
+    Name
+    CreatedDate
+    ModifiedDate
+    CreatedByUserUser {
+      FullName
+    }
+    ModifiedByUserUser {
+      FullName
+    }
+  }
+`;
 
 export const WebhookListDetails = props => {
   const deleteWebhook = id => {
@@ -19,7 +34,7 @@ export const WebhookListDetails = props => {
   const commonModifiedDate = convertToCommonDateTime(ModifiedDate);
 
   return (
-    <tr>
+    <>
       <td>
         <button
           type="button"
@@ -58,7 +73,7 @@ export const WebhookListDetails = props => {
           <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
         </button>
       </td>
-    </tr>
+    </>
   );
 };
 
@@ -66,19 +81,4 @@ WebhookListDetails.propTypes = {
   webhookDetails: PropTypes.object.isRequired,
 };
 
-export default createFragmentContainer(WebhookListDetails, {
-  webhookDetails: graphql`
-    fragment WebhookListDetails_webhookDetails on Webhook {
-      id
-      Name
-      CreatedDate
-      ModifiedDate
-      CreatedByUserUser {
-        FullName
-      }
-      ModifiedByUserUser {
-        FullName
-      }
-    }
-  `,
-});
+export default WebhookListDetails;
