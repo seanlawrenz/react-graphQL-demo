@@ -9,7 +9,7 @@ import { Button } from 'antd';
 
 import WebhookLoadingSkeleton from 'components/loading-skeletons/webhook-loading';
 
-import WebhookDetails from 'components/webhook-details/WebhookDetails';
+import WebhookDetails from 'components/webhook-details';
 
 import './styles.css';
 

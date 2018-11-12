@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import { build, fake } from 'test-data-bot';
-import { WebhookDetails } from '../WebhookDetails';
+import { WebhookDetails } from '..';
 
 const webhookBuilder = build('Webhook').fields({
   Name: fake(f => f.lorem.word()),

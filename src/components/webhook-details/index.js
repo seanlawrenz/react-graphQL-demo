@@ -6,7 +6,7 @@ import graphql from 'babel-plugin-relay/macro';
 import NameAndDescription from 'components/name-and-description';
 import Payload from 'components/payload';
 import WebHookEvents from 'components/web-hook-events';
-import WebhookComponentDetails from 'components/webhook-components/WebhookComponentDetails';
+import WebhookComponentDetails from 'components/webhook-components';
 
 import './styles.css';
 

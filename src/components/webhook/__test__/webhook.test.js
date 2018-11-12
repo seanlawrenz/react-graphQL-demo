@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithRouter } from 'constants/helpers/renderWithRouter';
-import Webhook from '../Webhook';
+import Webhook from '..';
 
 const mockParams = {
   params: {

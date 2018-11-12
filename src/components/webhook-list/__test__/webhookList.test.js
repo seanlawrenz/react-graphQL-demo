@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithRouter } from 'constants/helpers/renderWithRouter';
 import { build, fake, sequence, arrayOf } from 'test-data-bot';
-import WebhookList from '../WebhookList';
+import WebhookList from '..';
 
 jest.mock('react-relay');
 

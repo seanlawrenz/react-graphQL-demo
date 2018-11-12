@@ -4,7 +4,7 @@ import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import environment from 'constants/environment';
-import WebhookList from 'components/webhook-list/WebhookList';
+import WebhookList from 'components/webhook-list';
 import WebhooksLoadingSkeleton from 'components/loading-skeletons/webhooks-loading';
 
 // import { webhookIdGetter } from 'constants/helpers/webhookIdGetter';
