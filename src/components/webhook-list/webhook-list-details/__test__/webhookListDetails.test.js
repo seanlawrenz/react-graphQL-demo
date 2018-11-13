@@ -2,6 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { fireEvent, wait, render } from 'react-testing-library';
 import { Link as MockLink } from 'react-router-dom';
+import { MockedProvider } from 'react-apollo/test-utils';
 import { build, fake } from 'test-data-bot';
 import WebhookListDetails from '..';
 
@@ -32,11 +33,12 @@ test('WebhookListDetails', async () => {
   const { getByTestId, container } = render(
     // Addding <tr> here to suppress warnings
     <tr>
-      <WebhookListDetails webhookDetails={webhookListDetailsData} />
+      <MockedProvider>
+        <WebhookListDetails webhookDetails={webhookListDetailsData} />
+      </MockedProvider>
     </tr>,
     { container: tbody },
   );
-  getByTestId('delete button');
   const results = await axe(container.innerHTML);
   expect(results).toHaveNoViolations();
 

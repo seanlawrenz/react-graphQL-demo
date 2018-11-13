@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderWithRouter } from 'constants/helpers/renderWithRouter';
 import { build, fake, sequence, arrayOf } from 'test-data-bot';
+import { MockedProvider } from 'react-apollo/test-utils';
 import WebhookList from '..';
 
 jest.mock('react-relay');
@@ -27,5 +28,9 @@ const webhooksBuilder = build('Webhooks').fields({
 
 test('WebhookList', () => {
   const webhooks = webhooksBuilder();
-  renderWithRouter(<WebhookList webhooks={webhooks} />);
+  renderWithRouter(
+    <MockedProvider>
+      <WebhookList webhooks={webhooks} />
+    </MockedProvider>,
+  );
 });

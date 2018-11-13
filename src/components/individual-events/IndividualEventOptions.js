@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { Checkbox } from 'antd';
 
 import './styles.css';
-
-export const IndividualEventOptionsFragment = gql`
-  fragment IndividualEventOptions_webhookComponentEvent on webhookComponentEvent {
-    isSelected
-    eventType
-  }
-`;
 
 class IndividualEventOptions extends Component {
   constructor(props) {

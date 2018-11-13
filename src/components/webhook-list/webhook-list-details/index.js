@@ -1,37 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { GET_WEBHOOKS } from 'graphql/queries';
+import { DELETE_WEBHOOK } from 'graphql/mutations';
+
+import * as remove from 'lodash/remove';
 
 import { convertToCommonDateTime } from 'constants/dates/date-time';
 
-export const webhookListWebhook = gql`
-  fragment WebhookListDetails_webhookDetails on webhook {
-    id
-    webhookId
-    name
-    createdDate
-    modifiedDate
-    createdByUser {
-      fullName
-    }
-    modifiedByUser {
-      fullName
-    }
-  }
-`;
-
 export const WebhookListDetails = props => {
-  const deleteWebhook = id => {
-    console.log(id);
-  };
-
   const {
     webhookDetails: { webhookId, id, name, createdDate, modifiedDate, createdByUser, modifiedByUser },
   } = props;
 
   const commonCreatedDate = convertToCommonDateTime(createdDate);
   const commonModifiedDate = convertToCommonDateTime(modifiedDate);
+
+  const updateWebhook = webhooks => {
+    const data = remove(webhooks.edges, ({ node }) => node.id !== id);
+    webhooks.edges = data;
+    return webhooks;
+  };
 
   return (
     <>
@@ -56,17 +46,23 @@ export const WebhookListDetails = props => {
         <span className="btn">{modifiedByUser.fullName}</span>
       </td>
       <td>
-        <button
-          type="button"
-          aria-label="delete webhook"
-          className="btn btn-link"
-          data-testid="delete button"
-          onClick={() => {
-            deleteWebhook(id);
+        <Mutation
+          mutation={DELETE_WEBHOOK}
+          variables={{ id }}
+          update={cache => {
+            const { webhooks } = cache.readQuery({ query: GET_WEBHOOKS });
+            cache.writeQuery({
+              query: GET_WEBHOOKS,
+              data: { webhooks: updateWebhook(webhooks) },
+            });
           }}
         >
-          <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
-        </button>
+          {deleteWebhook => (
+            <button type="button" aria-label="delete webhook" className="btn btn-link" data-testid="delete button" onClick={deleteWebhook}>
+              <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
+            </button>
+          )}
+        </Mutation>
       </td>
     </>
   );

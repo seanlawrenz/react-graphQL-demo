@@ -1,33 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 
 import NameAndDescription from 'components/name-and-description';
 import Payload from 'components/payload';
 import WebHookEvents from 'components/web-hook-events';
-import WebhookComponentDetails, { WebhookComponentDetailsWebhookComponent } from 'components/webhook-components';
+import WebhookComponentDetails from 'components/webhook-components';
 
 import './styles.css';
-
-export const webhookComponentDetails = gql`
-  fragment WebhookDetails_webhook on webhook {
-    name
-    description
-    payloadUrl
-    secret
-    sslVerificationEnabled
-    allComponentEventsSelected
-    webhookComponents: webhookOnWebhookComponents {
-      edges {
-        webhookComponent: node {
-          id
-          ...WebhookComponentDetails_webhookComponent
-        }
-      }
-    }
-  }
-  ${WebhookComponentDetailsWebhookComponent}
-`;
 
 class WebhookDetails extends Component {
   constructor(props) {

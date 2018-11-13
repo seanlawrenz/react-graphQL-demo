@@ -22,13 +22,11 @@ const WebhookList = props => {
               </tr>
             </thead>
             <tbody>
-              {
-                webhooks.edges.map(({ node: webhook }) => (
-                  <tr key={webhook.id}>
-                    <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
-                  </tr>
-                ))
-              }
+              {webhooks.edges.map(({ node: webhook }) => (
+                <tr key={webhook.id}>
+                  <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
