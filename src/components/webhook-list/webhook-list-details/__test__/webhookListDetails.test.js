@@ -7,22 +7,20 @@ import WebhookListDetails from '..';
 
 const webhookBuilder = build('Wehbook').fields({
   id: fake(f => f.lorem.word()),
-  Name: fake(f => f.lorem.words()),
-  CreatedDate: fake(f => f.date.past()),
-  ModifiedDate: fake(f => f.date.recent()),
-  CreatedByUserUser: {
-    FullName: fake(f => f.name.findName()),
+  name: fake(f => f.lorem.words()),
+  createdDate: fake(f => f.date.past()),
+  modifiedDate: fake(f => f.date.recent()),
+  createdByUser: {
+    fullName: fake(f => f.name.findName()),
   },
-  ModifiedByUserUser: {
-    FullName: fake(f => f.name.findName()),
+  modifiedByUser: {
+    fullName: fake(f => f.name.findName()),
   },
 });
 
-jest.mock('react-router-dom', () => {
-  return {
-    Link: jest.fn(() => null),
-  };
-});
+jest.mock('react-router-dom', () => ({
+  Link: jest.fn(() => null),
+}));
 
 afterEach(() => {
   MockLink.mockClear();
@@ -31,7 +29,13 @@ afterEach(() => {
 test('WebhookListDetails', async () => {
   const webhookListDetailsData = webhookBuilder();
   const tbody = document.createElement('tbody');
-  const { getByTestId, container } = render(<WebhookListDetails webhookDetails={webhookListDetailsData} />, { container: tbody });
+  const { getByTestId, container } = render(
+    // Addding <tr> here to suppress warnings
+    <tr>
+      <WebhookListDetails webhookDetails={webhookListDetailsData} />
+    </tr>,
+    { container: tbody },
+  );
   getByTestId('delete button');
   const results = await axe(container.innerHTML);
   expect(results).toHaveNoViolations();

@@ -86,7 +86,9 @@ class Webhook extends Component {
               Save
             </Button>
             <Link to="/">
-              <Button icon="stop">Cancel</Button>
+              <Button data-testid="cancel-button" icon="stop">
+                Cancel
+              </Button>
             </Link>
           </div>
         </div>
