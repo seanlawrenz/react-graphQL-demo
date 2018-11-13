@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "relay": "relay-compiler --src ./src --schema ./config/schema.graphql",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
@@ -28,7 +27,6 @@
     "apollo-boost": "^0.1.20",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "3.3.7",
-    "cypress-testing-library": "^2.3.3",
     "graphql": "^14.0.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.11",
@@ -37,15 +35,13 @@
     "react": "^16.4.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.4.2",
-    "react-relay": "^1.7.0-rc.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1"
   },
   "devDependencies": {
     "babel-plugin-relay": "1.7.0-rc.1",
     "cypress": "^3.1.0",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
+    "cypress-testing-library": "^2.3.3",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-cypress": "^2.0.1",

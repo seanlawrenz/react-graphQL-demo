@@ -18,8 +18,8 @@ const webhookComponents = {
       webhookComponent: {
         id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
         __id: 'V2ViaG9va0NvbXBvbmVudDp7IklkIjozfQ==',
-        Component: {
-          Name: 'test',
+        component: {
+          name: 'test',
         },
         webhookComponentEvents: {
           edges: [
@@ -38,7 +38,6 @@ const webhookComponents = {
 test('renders correctly', () => {
   const webhookComponentData = webhookBuilder();
   webhookComponentData.webhookComponents = webhookComponents;
-  webhookComponentData.AllComponentEventsSelected = false;
   const { container } = render(<WebhookDetails webhook={webhookComponentData} onWebhookChange={() => {}} />);
   expect(container).toBeTruthy();
 });
