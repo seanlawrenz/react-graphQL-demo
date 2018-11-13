@@ -1,24 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createFragmentContainer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import gql from 'graphql-tag';
 
 import NameAndDescription from 'components/name-and-description';
 import Payload from 'components/payload';
 import WebHookEvents from 'components/web-hook-events';
-import WebhookComponentDetails from 'components/webhook-components';
+import WebhookComponentDetails, { WebhookComponentDetailsWebhookComponent } from 'components/webhook-components';
 
 import './styles.css';
 
-export class WebhookDetails extends Component {
+export const webhookComponentDetails = gql`
+  fragment WebhookDetails_webhook on webhook {
+    name
+    description
+    payloadUrl
+    secret
+    sslVerificationEnabled
+    allComponentEventsSelected
+    webhookComponents: webhookOnWebhookComponents {
+      edges {
+        webhookComponent: node {
+          id
+          ...WebhookComponentDetails_webhookComponent
+        }
+      }
+    }
+  }
+  ${WebhookComponentDetailsWebhookComponent}
+`;
+
+class WebhookDetails extends Component {
   constructor(props) {
     super(props);
 
     this.onWebhookChange = this.onWebhookChange.bind(this);
 
-    const { webhook: { AllComponentEventsSelected } } = this.props;
+    const {
+      webhook: { allComponentEventsSelected },
+    } = this.props;
     this.state = {
-      AllComponentEventsSelected,
+      allComponentEventsSelected,
     };
   }
 
@@ -26,7 +47,7 @@ export class WebhookDetails extends Component {
     const { allComponentEventsSelected } = data;
     if (allComponentEventsSelected !== undefined) {
       this.setState({
-        AllComponentEventsSelected: allComponentEventsSelected,
+        allComponentEventsSelected,
       });
     }
     const { onWebhookChange } = this.props;
@@ -34,26 +55,24 @@ export class WebhookDetails extends Component {
   }
 
   render() {
-    const { webhook: { Name, Description, PayloadUrl, Secret, SslVerificationEnabled, webhookComponents } } = this.props;
-    const { AllComponentEventsSelected } = this.state;
-    const showDetails = !AllComponentEventsSelected;
+    const {
+      webhook: { name, description, payloadUrl, secret, sslVerificationEnabled, webhookComponents },
+    } = this.props;
+    const { allComponentEventsSelected } = this.state;
+    const showDetails = !allComponentEventsSelected;
 
     return (
       <div className="gutter-top gutter-bottom">
-        <NameAndDescription name={Name} description={Description} onChange={this.onWebhookChange} />
-        <Payload payloadUrl={PayloadUrl} secret={Secret} sslVerificationEnabled={SslVerificationEnabled} onChange={this.onWebhookChange} />
-        <WebHookEvents allComponentEventsSelected={AllComponentEventsSelected} onChange={this.onWebhookChange} />
-        {
-          showDetails ? (
-            webhookComponents.edges.map(({ webhookComponent }) => (
-              <div key={webhookComponent.id}>
-                <WebhookComponentDetails webhookComponent={webhookComponent} />
-              </div>
-            ))
-          ) : (
-            null
-          )
-        }
+        <NameAndDescription name={name} description={description} onChange={this.onWebhookChange} />
+        <Payload payloadUrl={payloadUrl} secret={secret} sslVerificationEnabled={sslVerificationEnabled} onChange={this.onWebhookChange} />
+        <WebHookEvents allComponentEventsSelected={allComponentEventsSelected} onChange={this.onWebhookChange} />
+        {showDetails
+          ? webhookComponents.edges.map(({ webhookComponent }) => (
+            <div key={webhookComponent.id}>
+              <WebhookComponentDetails webhookComponent={webhookComponent} />
+            </div>
+          ))
+          : null}
       </div>
     );
   }
@@ -64,23 +83,4 @@ WebhookDetails.propTypes = {
   onWebhookChange: PropTypes.func,
 };
 
-export default createFragmentContainer(WebhookDetails, {
-  webhook: graphql`
-    fragment WebhookDetails_webhook on Webhook {
-      Name
-      Description
-      PayloadUrl
-      Secret
-      SslVerificationEnabled
-      AllComponentEventsSelected
-      webhookComponents: WebhookOnWebhookComponents {
-        edges {
-          webhookComponent: node {
-            id
-            ...WebhookComponentDetails_webhookComponent
-          }
-        }
-      }
-    }
-  `,
-});
+export default WebhookDetails;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WebhookListDetails from './webhook-list-details/WebhookListDetails';
+import WebhookListDetails from './webhook-list-details';
 
 import './styles.css';
 
@@ -23,8 +23,10 @@ const WebhookList = props => {
             </thead>
             <tbody>
               {
-                webhooks.map(({ node: webhook }) => (
-                  <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
+                webhooks.edges.map(({ node: webhook }) => (
+                  <tr key={webhook.id}>
+                    <WebhookListDetails key={webhook.__id} webhookDetails={webhook} />
+                  </tr>
                 ))
               }
             </tbody>
@@ -36,7 +38,7 @@ const WebhookList = props => {
 };
 
 WebhookList.propTypes = {
-  webhooks: PropTypes.array,
+  webhooks: PropTypes.object,
 };
 
 export default WebhookList;

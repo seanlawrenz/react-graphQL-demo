@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import { Link } from 'react-router-dom';
 
-import environment from 'constants/environment';
 import { Button } from 'antd';
 
 import WebhookLoadingSkeleton from 'components/loading-skeletons/webhook-loading';
-
-import WebhookDetails from 'components/webhook-details';
+import WebhookDetails, { webhookComponentDetails } from 'components/webhook-details';
 
 import './styles.css';
 
-const WebhookQuery = graphql`
-  query WebhookQuery($Id: ID!) {
-    node(id: $Id) {
-      id
-      ...WebhookDetails_webhook
+const WebhookQuery = gql`
+  query WebhookQuery($webhookId: Int!) {
+    webhooks(filter: { operator: IsEqualTo, operands: [{ field: webhookId }, { integerValue: $webhookId }] }) {
+      edges {
+        node {
+          ...WebhookDetails_webhook
+        }
+      }
     }
   }
+  ${webhookComponentDetails}
 `;
 
 class Webhook extends Component {
@@ -28,8 +31,12 @@ class Webhook extends Component {
 
     this.editWebhook = this.editWebhook.bind(this);
     this.onWebhookChange = this.onWebhookChange.bind(this);
-    const { match: { params: { _uri } } } = this.props;
-    this.uri = _uri;
+    const {
+      match: {
+        params: { _uri },
+      },
+    } = this.props;
+    this.uri = parseInt(_uri, 10);
   }
 
   componentDidMount() {
@@ -54,7 +61,7 @@ class Webhook extends Component {
         <div className="row">
           <nav className="buttonCellTop">
             <Link to="/" className="btn btn-link tdx-react-no-text-decoration">
-              <span className="fa fa-arrow-left fa-nopad" aria-hidden="true"></span> Back
+              <span className="fa fa-arrow-left fa-nopad" aria-hidden="true" /> Back
               <span className="sr-only">Go Back</span>
             </Link>
           </nav>
@@ -62,24 +69,27 @@ class Webhook extends Component {
         <div className="row">
           <div className="col-md-12">
             <h2>Edit Webhook</h2>
-            <QueryRenderer
-              environment={environment}
+            <Query
               query={WebhookQuery}
               variables={{
-                Id: this.uri,
+                webhookId: this.uri,
               }}
-              render={({ error, props }) => {
-                if (error) {
-                  return <div>{error.message}</div>;
-                }
-                if (props) {
-                  return <WebhookDetails webhook={props.node} onWebhookChange={this.onWebhookChange} />;
-                }
-                return <WebhookLoadingSkeleton />;
+            >
+              {({ loading, error, data }) => {
+                if (loading) return <WebhookLoadingSkeleton />;
+                if (error) return <p>Oh snap</p>;
+                console.log(data);
+                return <WebhookDetails webhook={data.webhooks.edges[0].node} onWebhookChange={this.onWebhookChange} />;
               }}
-            />
-            <Button onClick={this.editWebhook} className="gutter-right" type="primary" icon="save">Save</Button>
-            <Link to="/"><Button icon="stop">Cancel</Button></Link>
+            </Query>
+            <Button onClick={this.editWebhook} className="gutter-right" type="primary" icon="save">
+              Save
+            </Button>
+            <Link to="/">
+              <Button data-testid="cancel-button" icon="stop">
+                Cancel
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
