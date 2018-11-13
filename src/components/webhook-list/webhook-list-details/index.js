@@ -5,18 +5,18 @@ import gql from 'graphql-tag';
 
 import { convertToCommonDateTime } from 'constants/dates/date-time';
 
-
-export const WEBHOOK_LIST_DETAILS_FRAGMENT = gql`
-  fragment WebhookListDetails_webhookDetails on Webhook {
+export const webhookListWebhook = gql`
+  fragment WebhookListDetails_webhookDetails on webhook {
     id
-    Name
-    CreatedDate
-    ModifiedDate
-    CreatedByUserUser {
-      FullName
+    webhookId
+    name
+    createdDate
+    modifiedDate
+    createdByUser {
+      fullName
     }
-    ModifiedByUserUser {
-      FullName
+    modifiedByUser {
+      fullName
     }
   }
 `;
@@ -27,24 +27,19 @@ export const WebhookListDetails = props => {
   };
 
   const {
-    webhookDetails: { id, Name, CreatedDate, ModifiedDate, CreatedByUserUser, ModifiedByUserUser },
+    webhookDetails: { webhookId, id, name, createdDate, modifiedDate, createdByUser, modifiedByUser },
   } = props;
 
-  const commonCreatedDate = convertToCommonDateTime(CreatedDate);
-  const commonModifiedDate = convertToCommonDateTime(ModifiedDate);
+  const commonCreatedDate = convertToCommonDateTime(createdDate);
+  const commonModifiedDate = convertToCommonDateTime(modifiedDate);
 
   return (
     <>
       <td>
-        <button
-          type="button"
-          data-testid="new webhook"
-          aria-label="create new webhook"
-          className="btn btn-link"
-        >
-          <Link to={`/webhook/${id}`}>
-            <span className="sr-only">Edit {Name}</span>
-            {Name}
+        <button type="button" data-testid="new webhook" aria-label="create new webhook" className="btn btn-link">
+          <Link to={`/webhook/${webhookId}`}>
+            <span className="sr-only">Edit {name}</span>
+            {name}
           </Link>
         </button>
       </td>
@@ -52,13 +47,13 @@ export const WebhookListDetails = props => {
         <span className="btn">{commonCreatedDate}</span>
       </td>
       <td>
-        <span className="btn">{CreatedByUserUser.FullName}</span>
+        <span className="btn">{createdByUser.fullName}</span>
       </td>
       <td>
         <span className="btn">{commonModifiedDate}</span>
       </td>
       <td>
-        <span className="btn">{ModifiedByUserUser.FullName}</span>
+        <span className="btn">{modifiedByUser.fullName}</span>
       </td>
       <td>
         <button

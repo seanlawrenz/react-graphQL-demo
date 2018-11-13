@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { fireEvent, wait, render } from 'react-testing-library';
 import { Link as MockLink } from 'react-router-dom';
 import { build, fake } from 'test-data-bot';
-import WebhookListDetails from '../WebhookListDetails';
+import WebhookListDetails from '..';
 
 const webhookBuilder = build('Wehbook').fields({
   id: fake(f => f.lorem.word()),

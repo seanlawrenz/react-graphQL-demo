@@ -1,22 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createFragmentContainer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
-import IndividualEventOptions from 'components/individual-events/IndividualEventOptions';
+import gql from 'graphql-tag';
+import IndividualEventOptions, { IndividualEventOptionsFragment } from 'components/individual-events/IndividualEventOptions';
+
+export const WebhookComponentDetailsWebhookComponent = gql`
+  fragment WebhookComponentDetails_webhookComponent on webhookComponent {
+    component {
+      name
+    }
+    webhookComponentEvents: webhookComponentOnWebhookComponentEvents {
+      edges {
+        webhookComponentEvent: node {
+          id
+          ...IndividualEventOptions_webhookComponentEvent
+        }
+      }
+    }
+  }
+  ${IndividualEventOptionsFragment}
+`;
 
 const WebhookComponentsDetails = props => {
-  const { webhookComponent: { Component: { Name }, webhookComponentEvents } } = props;
+  const {
+    webhookComponent: {
+      component: { name },
+      webhookComponentEvents,
+    },
+  } = props;
 
   return (
     <div>
-      <p>{Name}</p>
-      {
-        webhookComponentEvents.edges.map(({ webhookComponentEvent }) => (
-          <div key={webhookComponentEvent.id}>
-            <IndividualEventOptions webhookComponentEvent={webhookComponentEvent} />
-          </div>
-        ))
-      }
+      <p>{name}</p>
+      {webhookComponentEvents.edges.map(({ webhookComponentEvent }) => (
+        <div key={webhookComponentEvent.id}>
+          <IndividualEventOptions webhookComponentEvent={webhookComponentEvent} />
+        </div>
+      ))}
     </div>
   );
 };
@@ -27,20 +46,4 @@ WebhookComponentsDetails.propTypes = {
 
 // export default WebhookComponentsDetails;
 
-export default createFragmentContainer(WebhookComponentsDetails, {
-  webhookComponent: graphql`
-    fragment WebhookComponentDetails_webhookComponent on WebhookComponent {
-      Component {
-        Name
-      }
-      webhookComponentEvents: WebhookComponentOnWebhookComponentEvents {
-        edges {
-          webhookComponentEvent: node {
-            id
-            ...IndividualEventOptions_webhookComponentEvent
-          }
-        }
-      }
-    }
-  `,
-});
+export default WebhookComponentsDetails;

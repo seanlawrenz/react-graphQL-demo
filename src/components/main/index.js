@@ -8,11 +8,11 @@ import WebhooksLoadingSkeleton from 'components/loading-skeletons/webhooks-loadi
 
 import './styles.css';
 
-import { WEBHOOK_LIST_DETAILS_FRAGMENT } from 'components/webhook-list/webhook-list-details/WebhookListDetails';
+import { webhookListWebhook } from 'components/webhook-list/webhook-list-details/';
 
 const MainQuery = gql`
   query MainQuery {
-    Webhooks(first: 10) {
+    webhooks(first: 10) {
       edges {
         node {
           ...WebhookListDetails_webhookDetails
@@ -20,21 +20,8 @@ const MainQuery = gql`
       }
     }
   }
-  ${WEBHOOK_LIST_DETAILS_FRAGMENT}
+  ${webhookListWebhook}
 `;
-
-// const MainQuery = gql`
-//   query MainQuery {
-//     Webhooks(first: 10) {
-//       edges {
-//         node {
-//           id
-//           Name
-//         }
-//       }
-//     }
-//   }
-// `;
 
 class Main extends Component {
   componentDidMount() {
@@ -57,16 +44,12 @@ class Main extends Component {
           </nav>
           <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
         </div>
-        <Query
-          query={MainQuery}
-        >
-          {
-            ({ loading, error, data }) => {
-              if (loading) return <WebhooksLoadingSkeleton />;
-              if (error) return <p>Error</p>;
-              return <WebhookList webhooks={data.Webhooks} />;
-            }
-          }
+        <Query query={MainQuery}>
+          {({ loading, error, data }) => {
+            if (loading) return <WebhooksLoadingSkeleton />;
+            if (error) return <p>Error</p>;
+            return <WebhookList webhooks={data.webhooks} />;
+          }}
         </Query>
       </div>
     );
