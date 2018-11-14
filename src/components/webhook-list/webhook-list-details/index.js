@@ -57,11 +57,20 @@ export const WebhookListDetails = props => {
             });
           }}
         >
-          {deleteWebhook => (
-            <button type="button" aria-label="delete webhook" className="btn btn-link" data-testid="delete button" onClick={deleteWebhook}>
-              <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
-            </button>
-          )}
+          {(deleteWebhook, { error }) => {
+            if (error) return <p>Oh snap {error}</p>;
+            return (
+              <button
+                type="button"
+                aria-label="delete webhook"
+                className="btn btn-link"
+                data-testid="delete button"
+                onClick={deleteWebhook}
+              >
+                <span className="fa fa-trash-o fa-lg fa-nopad fa-fw trash" />
+              </button>
+            );
+          }}
         </Mutation>
       </td>
     </>
