@@ -1,24 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
-import IndividualEventOptions, { IndividualEventOptionsFragment } from 'components/individual-events/IndividualEventOptions';
 
-export const WebhookComponentDetailsWebhookComponent = gql`
-  fragment WebhookComponentDetails_webhookComponent on webhookComponent {
-    component {
-      name
-    }
-    webhookComponentEvents: webhookComponentOnWebhookComponentEvents {
-      edges {
-        webhookComponentEvent: node {
-          id
-          ...IndividualEventOptions_webhookComponentEvent
-        }
-      }
-    }
-  }
-  ${IndividualEventOptionsFragment}
-`;
+import IndividualEventOptions from 'components/individual-events/IndividualEventOptions';
 
 const WebhookComponentsDetails = props => {
   const {

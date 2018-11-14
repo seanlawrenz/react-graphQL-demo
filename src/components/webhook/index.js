@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import { Link } from 'react-router-dom';
-
 import { Button } from 'antd';
 
+import { GET_WEBHOOK } from 'graphql/queries';
+
 import WebhookLoadingSkeleton from 'components/loading-skeletons/webhook-loading';
-import WebhookDetails, { webhookComponentDetails } from 'components/webhook-details';
+import WebhookDetails from 'components/webhook-details';
 
 import './styles.css';
-
-const WebhookQuery = gql`
-  query WebhookQuery($webhookId: Int!) {
-    webhooks(filter: { operator: IsEqualTo, operands: [{ field: webhookId }, { integerValue: $webhookId }] }) {
-      edges {
-        node {
-          ...WebhookDetails_webhook
-        }
-      }
-    }
-  }
-  ${webhookComponentDetails}
-`;
 
 class Webhook extends Component {
   constructor(props) {
@@ -70,7 +57,7 @@ class Webhook extends Component {
           <div className="col-md-12">
             <h2>Edit Webhook</h2>
             <Query
-              query={WebhookQuery}
+              query={GET_WEBHOOK}
               variables={{
                 webhookId: this.uri,
               }}

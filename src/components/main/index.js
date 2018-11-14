@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import WebhookList from 'components/webhook-list';
 import WebhooksLoadingSkeleton from 'components/loading-skeletons/webhooks-loading';
 
+import { GET_WEBHOOKS } from 'graphql/queries';
+
 import './styles.css';
 
-import { webhookListWebhook } from 'components/webhook-list/webhook-list-details/';
-
-const MainQuery = gql`
-  query MainQuery {
-    webhooks(first: 10) {
-      edges {
-        node {
-          ...WebhookListDetails_webhookDetails
-        }
-      }
-    }
-  }
-  ${webhookListWebhook}
-`;
-
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.refetchData = this.refetchData.bind(this);
+  }
+
   componentDidMount() {
     this.mounted = true;
   }
@@ -31,6 +22,9 @@ class Main extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
+
+  // Placeholder for the refetch method that comes back from query
+  refetchData() {} // eslint-disable-line class-methods-use-this
 
   render() {
     return (
@@ -41,14 +35,27 @@ class Main extends Component {
               <span className="fa fa-plus fa-nopad" aria-hidden="true" /> New
               <span className="sr-only">Create New</span>
             </Link>
+            <button
+              type="button"
+              aria-label="refresh webhooks"
+              className="btn btn-link tdx-react-no-text-decoration"
+              onClick={() => this.refetchData()}
+            >
+              <span className="fa fa-refresh fa-nopad" aria-hidden="true" /> Refresh
+            </button>
           </nav>
           <h1 style={{ margin: '0.5em' }}>Webhooks example</h1>
         </div>
-        <Query query={MainQuery}>
-          {({ loading, error, data }) => {
-            if (loading) return <WebhooksLoadingSkeleton />;
+        <Query query={GET_WEBHOOKS} notifyOnNetworkStatusChange>
+          {({ loading, error, data, refetch, networkStatus }) => {
+            if (loading || networkStatus === 4) return <WebhooksLoadingSkeleton />;
             if (error) return <p>Error</p>;
-            return <WebhookList webhooks={data.webhooks} />;
+            this.refetchData = refetch;
+            return (
+              <>
+                <WebhookList webhooks={data.webhooks} />
+              </>
+            );
           }}
         </Query>
       </div>
